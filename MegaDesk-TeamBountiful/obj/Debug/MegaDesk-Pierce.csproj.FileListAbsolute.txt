@@ -1,0 +1,14 @@
+C:\Users\shayn\source\repos\CIT365-W2021-PierceShayne\MegaDesk-Pierce\bin\Debug\MegaDesk-Pierce.exe.config
+C:\Users\shayn\source\repos\CIT365-W2021-PierceShayne\MegaDesk-Pierce\bin\Debug\MegaDesk-Pierce.exe
+C:\Users\shayn\source\repos\CIT365-W2021-PierceShayne\MegaDesk-Pierce\bin\Debug\MegaDesk-Pierce.pdb
+C:\Users\shayn\source\repos\CIT365-W2021-PierceShayne\MegaDesk-Pierce\obj\Debug\MegaDesk-Pierce.csprojAssemblyReference.cache
+C:\Users\shayn\source\repos\CIT365-W2021-PierceShayne\MegaDesk-Pierce\obj\Debug\MegaDesk_Pierce.MainMenu.resources
+C:\Users\shayn\source\repos\CIT365-W2021-PierceShayne\MegaDesk-Pierce\obj\Debug\MegaDesk_Pierce.Properties.Resources.resources
+C:\Users\shayn\source\repos\CIT365-W2021-PierceShayne\MegaDesk-Pierce\obj\Debug\MegaDesk-Pierce.csproj.GenerateResource.cache
+C:\Users\shayn\source\repos\CIT365-W2021-PierceShayne\MegaDesk-Pierce\obj\Debug\MegaDesk-Pierce.csproj.CoreCompileInputs.cache
+C:\Users\shayn\source\repos\CIT365-W2021-PierceShayne\MegaDesk-Pierce\obj\Debug\MegaDesk-Pierce.exe
+C:\Users\shayn\source\repos\CIT365-W2021-PierceShayne\MegaDesk-Pierce\obj\Debug\MegaDesk-Pierce.pdb
+C:\Users\shayn\source\repos\CIT365-W2021-PierceShayne\MegaDesk-Pierce\obj\Debug\MegaDesk_Pierce.AddQuote.resources
+C:\Users\shayn\source\repos\CIT365-W2021-PierceShayne\MegaDesk-Pierce\obj\Debug\MegaDesk_Pierce.DisplayQuote.resources
+C:\Users\shayn\source\repos\CIT365-W2021-PierceShayne\MegaDesk-Pierce\obj\Debug\MegaDesk_Pierce.SearchQuotes.resources
+C:\Users\shayn\source\repos\CIT365-W2021-PierceShayne\MegaDesk-Pierce\obj\Debug\MegaDesk_Pierce.ViewAllQuotes.resources

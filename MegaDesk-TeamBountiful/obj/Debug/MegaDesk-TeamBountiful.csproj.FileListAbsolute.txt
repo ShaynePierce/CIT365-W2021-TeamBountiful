@@ -1,0 +1,14 @@
+C:\Users\shayn\source\repos\CIT365-W2021-TeamBountiful\MegaDesk-TeamBountiful\obj\Debug\MegaDesk-TeamBountiful.csprojAssemblyReference.cache
+C:\Users\shayn\source\repos\CIT365-W2021-TeamBountiful\MegaDesk-TeamBountiful\obj\Debug\MegaDesk_TeamBountiful.Properties.Resources.resources
+C:\Users\shayn\source\repos\CIT365-W2021-TeamBountiful\MegaDesk-TeamBountiful\obj\Debug\MegaDesk-TeamBountiful.csproj.GenerateResource.cache
+C:\Users\shayn\source\repos\CIT365-W2021-TeamBountiful\MegaDesk-TeamBountiful\obj\Debug\MegaDesk-TeamBountiful.csproj.CoreCompileInputs.cache
+C:\Users\shayn\source\repos\CIT365-W2021-TeamBountiful\MegaDesk-TeamBountiful\obj\Debug\MegaDesk_TeamBountiful.AddQuote.resources
+C:\Users\shayn\source\repos\CIT365-W2021-TeamBountiful\MegaDesk-TeamBountiful\obj\Debug\MegaDesk_TeamBountiful.DisplayQuote.resources
+C:\Users\shayn\source\repos\CIT365-W2021-TeamBountiful\MegaDesk-TeamBountiful\obj\Debug\MegaDesk_TeamBountiful.MainMenu.resources
+C:\Users\shayn\source\repos\CIT365-W2021-TeamBountiful\MegaDesk-TeamBountiful\obj\Debug\MegaDesk_TeamBountiful.SearchQuotes.resources
+C:\Users\shayn\source\repos\CIT365-W2021-TeamBountiful\MegaDesk-TeamBountiful\obj\Debug\MegaDesk_TeamBountiful.ViewAllQuotes.resources
+C:\Users\shayn\source\repos\CIT365-W2021-TeamBountiful\MegaDesk-TeamBountiful\bin\Debug\MegaDesk-TeamBountiful.exe.config
+C:\Users\shayn\source\repos\CIT365-W2021-TeamBountiful\MegaDesk-TeamBountiful\bin\Debug\MegaDesk-TeamBountiful.exe
+C:\Users\shayn\source\repos\CIT365-W2021-TeamBountiful\MegaDesk-TeamBountiful\bin\Debug\MegaDesk-TeamBountiful.pdb
+C:\Users\shayn\source\repos\CIT365-W2021-TeamBountiful\MegaDesk-TeamBountiful\obj\Debug\MegaDesk-TeamBountiful.exe
+C:\Users\shayn\source\repos\CIT365-W2021-TeamBountiful\MegaDesk-TeamBountiful\obj\Debug\MegaDesk-TeamBountiful.pdb
