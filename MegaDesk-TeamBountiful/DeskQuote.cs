@@ -13,12 +13,6 @@ namespace MegaDesk_TeamBountiful
         public const double EXTRA_AREA_COST = 1.00;
         public const double DRAWER_COST = 50.00;
 
-        public const double SURFACE_OAK = 200.00;
-        public const double SURFACE_LAMINATE = 100.00;
-        public const double SURFACE_PINE = 50.00;
-        public const double SURFACE_ROSEWOOD = 300.00;
-        public const double SURFACE_VENEER = 125.00;
-
         public const double RUSH_3_SMALL = 60.00;
         public const double RUSH_3_MED = 70.00;
         public const double RUSH_3_LARGE = 80.00;
@@ -31,17 +25,12 @@ namespace MegaDesk_TeamBountiful
         public const double RUSH_7_MED = 35.00;
         public const double RUSH_7_LARGE = 40.00;
 
-        private Desk theDesk;
-        public Desk TheDesk
-        {
-            get { return theDesk; }
-            set { theDesk = value; }
-        }
+        public Desk TheDesk { get; set; }
 
         private string rushOrder;
         public string RushOrder
         {
-            get { return rushOrder; }
+            get => rushOrder;
             set
             {
                 rushOrder = value;
@@ -102,11 +91,9 @@ namespace MegaDesk_TeamBountiful
             }
         }
 
-        private string customerName;
-        public string CustomerName { get => customerName; set => customerName = value; }
+        public string CustomerName { get; set; }
 
-        private DateTime quoteDate;
-        public DateTime QuoteDate { get => quoteDate; set => quoteDate = value; }
+        public DateTime QuoteDate { get; set; }
 
         public DeskQuote(Desk theDesk, string rushOrder, string customerName, DateTime quoteDate)
         {
@@ -118,51 +105,26 @@ namespace MegaDesk_TeamBountiful
             BasePrice = BASECOST;
             SurfaceAreaPrice = Math.Max(TheDesk.Area - MAX_AREA_FREE, 0) * EXTRA_AREA_COST;
             DrawersPrice = TheDesk.Drawers * DRAWER_COST;
-            SurfaceMaterialPrice = GetSurfaceMaterialPrice();
+            SurfaceMaterialPrice = (int) TheDesk.SurfaceMaterial; // CAST to get dollar value
             TotalPrice = GetTotalPrice();
         }
 
-        private double basePrice;
-        public double BasePrice { get => basePrice; set => basePrice = value; }
+        public double BasePrice { get; set; }
 
-        private double surfaceAreaPrice;
-        public double SurfaceAreaPrice { get => surfaceAreaPrice; set => surfaceAreaPrice = value; }
+        public double SurfaceAreaPrice { get; set; }
 
-        private double drawersPrice;
-        public double DrawersPrice { get => drawersPrice; set => drawersPrice = value; }
+        public double DrawersPrice { get; set; }
 
-        private double surfaceMaterialPrice;
-        public double SurfaceMaterialPrice { get => surfaceMaterialPrice; set => surfaceMaterialPrice = value; }
+        public double SurfaceMaterialPrice { get; set; }
 
-        private double rushPrice;
-        public double RushPrice { get => rushPrice; set => rushPrice = value; }
+        public double RushPrice { get; set; }
 
-        private double totalPrice;
-        public double TotalPrice { get => totalPrice; set => totalPrice = value; }
+        public double TotalPrice { get; set; }
 
         private double GetTotalPrice()
         {
             return BasePrice + DrawersPrice + SurfaceAreaPrice + SurfaceMaterialPrice + RushPrice;
         }
 
-
-        private double GetSurfaceMaterialPrice()
-        {
-            switch (TheDesk.SurfaceMaterial)
-            {
-                case "Laminate":
-                    return SURFACE_LAMINATE;
-                case "Oak":
-                    return SURFACE_OAK;
-                case "Rosewood":
-                    return SURFACE_ROSEWOOD;
-                case "Veneer":
-                    return SURFACE_VENEER;
-                case "Pine":
-                    return SURFACE_PINE;
-                default:
-                    return 0;
-            }
-        }
     }
 }

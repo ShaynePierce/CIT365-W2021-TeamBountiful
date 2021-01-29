@@ -8,11 +8,11 @@ namespace MegaDesk_TeamBountiful
 {
     public enum DesktopMaterial
     {
-        Laminate, 
-        Oak, 
-        Rosewood, 
-        Veneer, 
-        Pine
+        Laminate = 100, 
+        Oak = 200, 
+        Rosewood = 300, 
+        Veneer = 125, 
+        Pine = 50
     }
         
     public class Desk
@@ -26,7 +26,7 @@ namespace MegaDesk_TeamBountiful
 
         private int width = 0;
         public int Width {
-            get { return width; }
+            get => width;
             set 
             { 
                 width = value;
@@ -37,7 +37,7 @@ namespace MegaDesk_TeamBountiful
         private int depth = 0;
         public int Depth
         {
-            get { return depth; }
+            get => depth;
             set 
             { 
                 depth = value;
@@ -45,34 +45,23 @@ namespace MegaDesk_TeamBountiful
             }
         }
 
-        private int drawers = 0;
-        public int Drawers
-        {
-            get { return drawers; }
-            set { drawers = value; }
-        }
+        public int Drawers { get; set; } = 0;
 
-        private string surfaceMaterial;
-        public string SurfaceMaterial
-        {
-            get { return surfaceMaterial; }
-            set { surfaceMaterial = value; }
-        }
+        public DesktopMaterial SurfaceMaterial { get; set; }
 
-
-        public Desk(int width, int depth, int drawers, string surfaceMaterial)
+        public Desk(int width, int depth, int drawers, DesktopMaterial surfaceMaterial)
         {
             Width = width;
             Depth = depth;
             Drawers = drawers;
-            SurfaceMaterial = surfaceMaterial ?? throw new ArgumentNullException(nameof(surfaceMaterial));
+            SurfaceMaterial = surfaceMaterial;
         }
 
         private int area;
         public int Area
         {
-            get { return area; }
-            set { area = GetArea(); }
+            get => area;
+            set => area = GetArea();
         }
 
         private bool ValidateDeskDimensions()

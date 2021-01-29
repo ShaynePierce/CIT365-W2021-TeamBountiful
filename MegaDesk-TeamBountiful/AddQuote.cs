@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MegaDesk_TeamBountiful
@@ -15,7 +9,11 @@ namespace MegaDesk_TeamBountiful
         public AddQuote()
         {
             InitializeComponent();
-            ComboBoxDesktopMaterial.Items.AddRange(Enum.GetNames(typeof(DesktopMaterial)));
+
+            // Populate Combo from Enum list
+            foreach (DesktopMaterial surfaceMaterial in Enum.GetValues(typeof(DesktopMaterial))) 
+                ComboBoxDesktopMaterial.Items.Add(surfaceMaterial);
+
             ComboBoxRushOrder.Items.Add("Normal (14 Days)");
             ComboBoxRushOrder.Items.Add("7 Days");
             ComboBoxRushOrder.Items.Add("5 Days");
@@ -29,7 +27,7 @@ namespace MegaDesk_TeamBountiful
             if ((TextBoxDeskWidth.Text == string.Empty) || !IntValue || (TempWidth < Desk.MINWIDTH) || (TempWidth > Desk.MAXWIDTH))
             {
                 e.Cancel = true;
-                ErrorProvider1.SetError(TextBoxDeskWidth, "Please enter width between " + Desk.MINWIDTH.ToString() + " and " + Desk.MAXWIDTH.ToString() + " inches.");
+                ErrorProvider1.SetError(TextBoxDeskWidth, @"Please enter width between " + Desk.MINWIDTH.ToString() + " and " + Desk.MAXWIDTH.ToString() + " inches.");
             }
             else
             {
@@ -44,7 +42,7 @@ namespace MegaDesk_TeamBountiful
             {
                 if (!Char.IsDigit(e.KeyChar))
                 {
-                    ErrorProvider1.SetError(TextBoxDeskDepth, "Please enter depth between " + Desk.MINDEPTH.ToString() + " and " + Desk.MAXDEPTH.ToString() + " inches.");
+                    ErrorProvider1.SetError(TextBoxDeskDepth, @"Please enter depth between " + Desk.MINDEPTH.ToString() + " and " + Desk.MAXDEPTH.ToString() + " inches.");
                 }
             } 
             else 
@@ -53,7 +51,7 @@ namespace MegaDesk_TeamBountiful
                 bool IntValue = int.TryParse(TextBoxDeskDepth.Text, out TempDepth);
                 if ((TextBoxDeskDepth.Text == string.Empty) || !IntValue || (TempDepth < Desk.MINDEPTH) || (TempDepth > Desk.MAXDEPTH))
                 {
-                    ErrorProvider1.SetError(TextBoxDeskDepth, "Please enter depth between " + Desk.MINDEPTH.ToString() + " and " + Desk.MAXDEPTH.ToString() + " inches.");
+                    ErrorProvider1.SetError(TextBoxDeskDepth, @"Please enter depth between " + Desk.MINDEPTH.ToString() + " and " + Desk.MAXDEPTH.ToString() + " inches.");
                 }
             }
         }
@@ -65,7 +63,7 @@ namespace MegaDesk_TeamBountiful
             if ((TextBoxNumberOfDrawers.Text == string.Empty) || !IntValue || (TempWidth < Desk.MINDRAWERS) || (TempWidth > Desk.MAXDRAWERS))
             {
                 e.Cancel = true;
-                ErrorProvider1.SetError(TextBoxNumberOfDrawers, "Please enter number of drawers between " + Desk.MINDRAWERS.ToString() + " and " + Desk.MAXDRAWERS.ToString() + ".");
+                ErrorProvider1.SetError(TextBoxNumberOfDrawers, @"Please enter number of drawers between " + Desk.MINDRAWERS.ToString() + " and " + Desk.MAXDRAWERS.ToString() + ".");
             }
             else
             {
@@ -91,7 +89,7 @@ namespace MegaDesk_TeamBountiful
                 try
                 {
                     DisplayQuote displayQuote = new DisplayQuote();
-                    Desk myDesk = new Desk(int.Parse(TextBoxDeskWidth.Text), int.Parse(TextBoxDeskDepth.Text), int.Parse(TextBoxNumberOfDrawers.Text), ComboBoxDesktopMaterial.Text);
+                    Desk myDesk = new Desk(int.Parse(TextBoxDeskWidth.Text), int.Parse(TextBoxDeskDepth.Text), int.Parse(TextBoxNumberOfDrawers.Text), (DesktopMaterial)ComboBoxDesktopMaterial.SelectedItem);
                     DeskQuote myQuote = new DeskQuote(myDesk, ComboBoxRushOrder.Text, TextBoxCustomerName.Text, DateTimePickerOrderDate.Value);
                     displayQuote.MyDeskQuote = myQuote;
                     displayQuote.Show();
@@ -99,7 +97,7 @@ namespace MegaDesk_TeamBountiful
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Error creating DisplayQuote. Check values and try again.");
+                    MessageBox.Show(@"Error creating DisplayQuote. Check values and try again.");
                 }
             }
         }
@@ -109,7 +107,7 @@ namespace MegaDesk_TeamBountiful
             if (ComboBoxDesktopMaterial.Text == string.Empty )
             {
                 e.Cancel = true;
-                ErrorProvider1.SetError(ComboBoxDesktopMaterial, "Please select the desk surface material.");
+                ErrorProvider1.SetError(ComboBoxDesktopMaterial, @"Please select the desk surface material.");
             } 
             else
             {
@@ -124,7 +122,7 @@ namespace MegaDesk_TeamBountiful
             if ((TextBoxDeskDepth.Text == string.Empty) || !IntValue || (TempDepth < Desk.MINDEPTH) || (TempDepth > Desk.MAXDEPTH))
             {
                 e.Cancel = true;
-                ErrorProvider1.SetError(TextBoxDeskDepth, "Please depth width between " + Desk.MINDEPTH.ToString() + " and " + Desk.MAXDEPTH.ToString() + " inches.");
+                ErrorProvider1.SetError(TextBoxDeskDepth, @"Please depth width between " + Desk.MINDEPTH.ToString() + " and " + Desk.MAXDEPTH.ToString() + " inches.");
             }
             else
             {
@@ -138,7 +136,7 @@ namespace MegaDesk_TeamBountiful
             if (ComboBoxRushOrder.Text == string.Empty)
             {
                 e.Cancel = true;
-                ErrorProvider1.SetError(ComboBoxRushOrder, "Please select the order rush speed.");
+                ErrorProvider1.SetError(ComboBoxRushOrder, @"Please select the order rush speed.");
             }
             else
             {
@@ -152,7 +150,7 @@ namespace MegaDesk_TeamBountiful
             if (DateTimePickerOrderDate.Value > DateTime.Now)
             {
                 e.Cancel = true;
-                ErrorProvider1.SetError(DateTimePickerOrderDate, "Please do not select a future date.");
+                ErrorProvider1.SetError(DateTimePickerOrderDate, @"Please do not select a future date.");
             }
             else
             {
@@ -165,7 +163,7 @@ namespace MegaDesk_TeamBountiful
             if (TextBoxCustomerName.Text == string.Empty)
             {
                 e.Cancel = true;
-                ErrorProvider1.SetError(TextBoxCustomerName, "Please enter a valid name.");
+                ErrorProvider1.SetError(TextBoxCustomerName, @"Please enter a valid name.");
             }
             else
             {

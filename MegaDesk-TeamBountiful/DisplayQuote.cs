@@ -35,7 +35,7 @@ namespace MegaDesk_TeamBountiful
                 LabelDepth.Text = MyDeskQuote.TheDesk.Depth.ToString();
                 LabelArea.Text = MyDeskQuote.TheDesk.Area.ToString();
                 LabelDrawers.Text = MyDeskQuote.TheDesk.Drawers.ToString();
-                LabelSurface.Text = MyDeskQuote.TheDesk.SurfaceMaterial;
+                LabelSurface.Text = MyDeskQuote.TheDesk.SurfaceMaterial.ToString();
                 LabelRush.Text = MyDeskQuote.RushOrder;
                 LabelOrderDate.Text = MyDeskQuote.QuoteDate.ToString("d");
                 LabelCustomerName.Text = MyDeskQuote.CustomerName;
