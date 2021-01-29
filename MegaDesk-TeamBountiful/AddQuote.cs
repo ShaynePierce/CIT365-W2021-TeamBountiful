@@ -10,7 +10,7 @@ namespace MegaDesk_TeamBountiful
         {
             InitializeComponent();
 
-            // Populate Combo from Enum list
+            // Populate Combo from Enum list by Values
             foreach (DesktopMaterial surfaceMaterial in Enum.GetValues(typeof(DesktopMaterial))) 
                 ComboBoxDesktopMaterial.Items.Add(surfaceMaterial);
 
@@ -71,11 +71,6 @@ namespace MegaDesk_TeamBountiful
             }
         }
 
-        private void AddQuote_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void ButtonMainMenu_Click(object sender, EventArgs e)
         {
             Application.OpenForms[0].Show();
@@ -91,6 +86,10 @@ namespace MegaDesk_TeamBountiful
                     DisplayQuote displayQuote = new DisplayQuote();
                     Desk myDesk = new Desk(int.Parse(TextBoxDeskWidth.Text), int.Parse(TextBoxDeskDepth.Text), int.Parse(TextBoxNumberOfDrawers.Text), (DesktopMaterial)ComboBoxDesktopMaterial.SelectedItem);
                     DeskQuote myQuote = new DeskQuote(myDesk, ComboBoxRushOrder.Text, TextBoxCustomerName.Text, DateTimePickerOrderDate.Value);
+                    
+                    // Add Quote to Filer 
+                    MainMenu.DataFiler.AddQuote(ref myQuote);
+                    
                     displayQuote.MyDeskQuote = myQuote;
                     displayQuote.Show();
                     Close();

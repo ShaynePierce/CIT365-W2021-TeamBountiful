@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MegaDesk_TeamBountiful
@@ -22,5 +15,16 @@ namespace MegaDesk_TeamBountiful
             Application.OpenForms[0].Show();
             Close();
         }
+
+        /*
+         
+        To view all.. iterate through Filer.DeskQuotes. Something like:
+
+        foreach (var quote in MainMenu.DataFiler.DeskQuotes)
+            {
+                Do something with 'quote';            
+            }         
+         
+         */
     }
 }

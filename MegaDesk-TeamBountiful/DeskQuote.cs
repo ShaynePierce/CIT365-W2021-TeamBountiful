@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MegaDesk_TeamBountiful
 {
@@ -27,16 +23,16 @@ namespace MegaDesk_TeamBountiful
 
         public Desk TheDesk { get; set; }
 
-        private string rushOrder;
+        private string _rushOrder;
         public string RushOrder
         {
-            get => rushOrder;
+            get => _rushOrder;
             set
             {
-                rushOrder = value;
+                _rushOrder = value;
                 if (TheDesk.Area < 1000)
                 {
-                    switch (rushOrder)
+                    switch (_rushOrder)
                     {
                         case "7 Days":
                             RushPrice = RUSH_7_SMALL;
@@ -54,7 +50,7 @@ namespace MegaDesk_TeamBountiful
                 }
                 else if (TheDesk.Area > 2000)
                 {
-                    switch (rushOrder)
+                    switch (_rushOrder)
                     {
                         case "7 Days":
                             RushPrice = RUSH_7_LARGE;
@@ -72,7 +68,7 @@ namespace MegaDesk_TeamBountiful
                 }
                 else
                 {
-                    switch (rushOrder)
+                    switch (_rushOrder)
                     {
                         case "7 Days":
                             RushPrice = RUSH_7_MED;

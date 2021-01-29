@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MegaDesk_TeamBountiful
 {
@@ -24,23 +20,23 @@ namespace MegaDesk_TeamBountiful
         public const int MINDRAWERS = 0;
         public const int MAXDRAWERS = 12;
 
-        private int width = 0;
+        private int _width = 0;
         public int Width {
-            get => width;
+            get => _width;
             set 
             { 
-                width = value;
+                _width = value;
                 area = GetArea();
             }
         }
 
-        private int depth = 0;
+        private int _depth = 0;
         public int Depth
         {
-            get => depth;
+            get => _depth;
             set 
             { 
-                depth = value;
+                _depth = value;
                 area = GetArea();
             }
         }
@@ -66,15 +62,15 @@ namespace MegaDesk_TeamBountiful
 
         private bool ValidateDeskDimensions()
         {
-            return (width >= MINWIDTH)
-                & (width <= MAXWIDTH)
-                & (depth >= MINDEPTH)
-                & (depth <= MAXDEPTH);
+            return (_width >= MINWIDTH)
+                & (_width <= MAXWIDTH)
+                & (_depth >= MINDEPTH)
+                & (_depth <= MAXDEPTH);
         }
 
         private int GetArea()
         {
-            return ValidateDeskDimensions() ? width * depth : 0;
+            return ValidateDeskDimensions() ? _width * _depth : 0;
         }
     }
 }

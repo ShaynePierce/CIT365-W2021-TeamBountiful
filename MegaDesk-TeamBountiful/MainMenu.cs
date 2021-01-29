@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MegaDesk_TeamBountiful
 {
     public partial class MainMenu : Form
     {
+        public static Filer DataFiler = new Filer();
+
         public MainMenu()
         {
             InitializeComponent();
@@ -40,6 +35,8 @@ namespace MegaDesk_TeamBountiful
 
         private void ButtonExit_Click(object sender, EventArgs e)
         {
+            DataFiler.SaveToJson();
+
             this.Close();
         }
 
