@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace MegaDesk_TeamBountiful
 {
@@ -9,18 +10,6 @@ namespace MegaDesk_TeamBountiful
         public const double EXTRA_AREA_COST = 1.00;
         public const double DRAWER_COST = 50.00;
 
-        public const double RUSH_3_SMALL = 60.00;
-        public const double RUSH_3_MED = 70.00;
-        public const double RUSH_3_LARGE = 80.00;
-
-        public const double RUSH_5_SMALL = 40.00;
-        public const double RUSH_5_MED = 50.00;
-        public const double RUSH_5_LARGE = 60.00;
-
-        public const double RUSH_7_SMALL = 30.00;
-        public const double RUSH_7_MED = 35.00;
-        public const double RUSH_7_LARGE = 40.00;
-
         public Desk TheDesk { get; set; }
 
         private string _rushOrder;
@@ -30,60 +19,34 @@ namespace MegaDesk_TeamBountiful
             set
             {
                 _rushOrder = value;
+                int sizeIndex;
                 if (TheDesk.Area < 1000)
                 {
-                    switch (_rushOrder)
-                    {
-                        case "7 Days":
-                            RushPrice = RUSH_7_SMALL;
-                            break;
-                        case "5 Days":
-                            RushPrice = RUSH_5_SMALL;
-                            break;
-                        case "3 Days":
-                            RushPrice = RUSH_3_SMALL;
-                            break;
-                        default:
-                            RushPrice = 0;
-                            break;
-                    }
-                }
-                else if (TheDesk.Area > 2000)
+                    sizeIndex = 0; //small
+                } else if (TheDesk.Area < 2000)
                 {
-                    switch (_rushOrder)
-                    {
-                        case "7 Days":
-                            RushPrice = RUSH_7_LARGE;
-                            break;
-                        case "5 Days":
-                            RushPrice = RUSH_5_LARGE;
-                            break;
-                        case "3 Days":
-                            RushPrice = RUSH_3_LARGE;
-                            break;
-                        default:
-                            RushPrice = 0;
-                            break;
-                    }
-                }
-                else
+                    sizeIndex = 1; //medium
+                } else
                 {
-                    switch (_rushOrder)
-                    {
-                        case "7 Days":
-                            RushPrice = RUSH_7_MED;
-                            break;
-                        case "5 Days":
-                            RushPrice = RUSH_5_MED;
-                            break;
-                        case "3 Days":
-                            RushPrice = RUSH_3_MED;
-                            break;
-                        default:
-                            RushPrice = 0;
-                            break;
-                    }
+                    sizeIndex = 2; //large
                 }
+
+                switch (_rushOrder)
+                {
+                    case "7 Days":
+                        RushPrice = DeskQuote.RushPrices[2, sizeIndex];
+                        break;
+                    case "5 Days":
+                        RushPrice = DeskQuote.RushPrices[1, sizeIndex];
+                        break;
+                    case "3 Days":
+                        RushPrice = DeskQuote.RushPrices[0, sizeIndex];
+                        break;
+                    default:
+                        RushPrice = 0;
+                        break;
+                }
+
             }
         }
 
@@ -117,9 +80,40 @@ namespace MegaDesk_TeamBountiful
 
         public double TotalPrice { get; set; }
 
+        public static readonly double[,] RushPrices = new double[3,3];
+
         private double GetTotalPrice()
         {
             return BasePrice + DrawersPrice + SurfaceAreaPrice + SurfaceMaterialPrice + RushPrice;
+        }
+
+        static DeskQuote()
+        {
+            GetRushOrder();
+        }
+
+        static void GetRushOrder()
+        {
+            string[] prices = { "" };
+            try
+            {
+                prices = System.IO.File.ReadAllLines(@"rushOrderPrices.txt");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Could not load Rush Prices. Please check files and restart program.");
+            }
+            
+            if (prices.Length == 9) //if fails the prices will all be 0
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        RushPrices[i,j] = double.Parse(prices[i * 3 + j]);
+                    }
+                }
+            }
         }
 
     }
