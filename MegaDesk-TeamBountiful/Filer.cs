@@ -19,7 +19,7 @@ namespace MegaDesk_TeamBountiful
                 var jsonData = File.ReadAllText(_jsonFile);
                 DeskQuotes = JsonConvert.DeserializeObject<List<DeskQuote>>(jsonData);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // Since it failed array wasn't initialized. Do so.
                 DeskQuotes = new List<DeskQuote>();
@@ -33,7 +33,7 @@ namespace MegaDesk_TeamBountiful
                 var jsonData = JsonConvert.SerializeObject(DeskQuotes, Formatting.Indented);
                 File.WriteAllText(_jsonFile, jsonData);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show(@"There was an error saving DeskQuotes.");
             }
