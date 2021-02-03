@@ -1,6 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
 
+
+/*
+ * Naming conventions Team Bountiful agreed upon are:
+ * Pascal CamelCase public methods,
+ * Underscore CamelCase for private methods and members.
+ *
+ */
+
 namespace MegaDesk_TeamBountiful
 {
     public partial class MainMenu : Form

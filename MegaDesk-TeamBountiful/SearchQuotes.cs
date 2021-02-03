@@ -7,6 +7,7 @@ namespace MegaDesk_TeamBountiful
     public partial class SearchQuotes : Form
     {
         private List<DeskQuote> deskQuotes = new List<DeskQuote>();
+
         public SearchQuotes()
         {
             InitializeComponent();
@@ -28,7 +29,17 @@ namespace MegaDesk_TeamBountiful
             if (comboBox1.SelectedIndex > -1)
             {
                 MainMenu.DataFiler.Search((DesktopMaterial)comboBox1.SelectedItem, ref deskQuotes);
-                MessageBox.Show(@"Quotes returned: " + deskQuotes.Count);
+                if (deskQuotes.Count > 0)
+                {
+                    ViewAllQuotes viewAllQuotesForm = new ViewAllQuotes(deskQuotes);
+                    viewAllQuotesForm.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show(@"No Quotes found.");
+                }
+
             }
         }
     }

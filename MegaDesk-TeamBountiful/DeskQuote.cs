@@ -106,9 +106,9 @@ namespace MegaDesk_TeamBountiful
             
             if (prices.Length == 9) //if fails the prices will all be 0
             {
-                for (int i = 0; i < 3; i++)
+                for (var i = 0; i < 3; i++)
                 {
-                    for (int j = 0; j < 3; j++)
+                    for (var j = 0; j < 3; j++)
                     {
                         RushPrices[i,j] = double.Parse(prices[i * 3 + j]);
                     }

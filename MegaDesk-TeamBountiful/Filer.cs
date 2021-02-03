@@ -10,13 +10,13 @@ namespace MegaDesk_TeamBountiful
     public class Filer
     {
         public readonly List<DeskQuote> DeskQuotes;
-        private readonly string jsonFile = @"quotes.json";
+        private readonly string _jsonFile = @"quotes.json";
 
         public Filer()
         {
             try
             {
-                var jsonData = File.ReadAllText(jsonFile);
+                var jsonData = File.ReadAllText(_jsonFile);
                 DeskQuotes = JsonConvert.DeserializeObject<List<DeskQuote>>(jsonData);
             }
             catch (Exception e)
@@ -31,7 +31,7 @@ namespace MegaDesk_TeamBountiful
             try
             {
                 var jsonData = JsonConvert.SerializeObject(DeskQuotes, Formatting.Indented);
-                File.WriteAllText(jsonFile, jsonData);
+                File.WriteAllText(_jsonFile, jsonData);
             }
             catch (Exception e)
             {

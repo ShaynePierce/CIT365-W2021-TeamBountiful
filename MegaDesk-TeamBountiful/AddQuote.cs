@@ -38,9 +38,9 @@ namespace MegaDesk_TeamBountiful
         private void TextBoxDeskDepth_KeyPress(object sender, KeyPressEventArgs e)
         {
             ErrorProvider1.SetError(TextBoxDeskDepth, "");
-            if (!Char.IsControl(e.KeyChar))
+            if (!char.IsControl(e.KeyChar))
             {
-                if (!Char.IsDigit(e.KeyChar))
+                if (!char.IsDigit(e.KeyChar))
                 {
                     ErrorProvider1.SetError(TextBoxDeskDepth, @"Please enter depth between " + Desk.MINDEPTH.ToString() + " and " + Desk.MAXDEPTH.ToString() + " inches.");
                 }

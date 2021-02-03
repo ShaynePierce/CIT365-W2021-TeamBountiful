@@ -1,15 +1,25 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace MegaDesk_TeamBountiful
 {
     public partial class ViewAllQuotes : Form
     {
+        public ViewAllQuotes(List<DeskQuote> localQuotes)
+        {
+            InitializeComponent();
+
+            this.Text = @"Search Results";
+
+            InitalizeDataGrid(localQuotes);
+        }
+
         public ViewAllQuotes()
         {
             InitializeComponent();
 
-            InitalizeDataGrid();
+            InitalizeDataGrid(MainMenu.DataFiler.DeskQuotes);
         }
 
         private void ButtonMainMenu_Click(object sender, EventArgs e)
@@ -18,7 +28,7 @@ namespace MegaDesk_TeamBountiful
             Close();
         }
 
-        private void InitalizeDataGrid()
+        private void InitalizeDataGrid(List<DeskQuote> localQuotes)
         {
             DataGridView quotesDataGridView = QuotesDataGridView;
 
@@ -59,7 +69,8 @@ namespace MegaDesk_TeamBountiful
             //QuotesDataGridView.Rows.Clear();
 
             // To view all.. iterate through Filer.DeskQuotes. Something like:
-            foreach (var quote in MainMenu.DataFiler.DeskQuotes)
+            //foreach (var quote in MainMenu.DataFiler.DeskQuotes)
+            foreach (var quote in localQuotes)
             {
                 string[] row =
                 {
