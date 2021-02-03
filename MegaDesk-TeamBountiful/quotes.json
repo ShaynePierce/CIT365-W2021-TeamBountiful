@@ -1,0 +1,56 @@
+[
+  {
+    "TheDesk": {
+      "Width": 49,
+      "Depth": 18,
+      "Drawers": 2,
+      "SurfaceMaterial": 300,
+      "Area": 882
+    },
+    "RushOrder": "3 Day",
+    "CustomerName": "Test One",
+    "QuoteDate": "2021-01-29T11:48:48.1244851-07:00",
+    "BasePrice": 200.0,
+    "SurfaceAreaPrice": 0.0,
+    "DrawersPrice": 100.0,
+    "SurfaceMaterialPrice": 300.0,
+    "RushPrice": 0.0,
+    "TotalPrice": 600.0
+  },
+  {
+    "TheDesk": {
+      "Width": 49,
+      "Depth": 18,
+      "Drawers": 2,
+      "SurfaceMaterial": 100,
+      "Area": 882
+    },
+    "RushOrder": "7 Day",
+    "CustomerName": "Test Two",
+    "QuoteDate": "2021-01-29T11:48:48.131463-07:00",
+    "BasePrice": 200.0,
+    "SurfaceAreaPrice": 0.0,
+    "DrawersPrice": 100.0,
+    "SurfaceMaterialPrice": 100.0,
+    "RushPrice": 0.0,
+    "TotalPrice": 400.0
+  },
+  {
+    "TheDesk": {
+      "Width": 39,
+      "Depth": 12,
+      "Drawers": 0,
+      "SurfaceMaterial": 100,
+      "Area": 468
+    },
+    "RushOrder": "7 Days",
+    "CustomerName": "Test Three",
+    "QuoteDate": "2021-02-02T20:06:59.0598113-07:00",
+    "BasePrice": 200.0,
+    "SurfaceAreaPrice": 0.0,
+    "DrawersPrice": 0.0,
+    "SurfaceMaterialPrice": 100.0,
+    "RushPrice": 30.0,
+    "TotalPrice": 330.0
+  }
+]
