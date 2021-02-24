@@ -1,0 +1,61 @@
+﻿@page
+@model WebMegaDesk.Pages.Quotes.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Quote</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quote.CustomerFirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quote.CustomerFirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quote.CustomerLastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quote.CustomerLastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quote.DeskWidth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quote.DeskWidth)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quote.DeskDepth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quote.DeskDepth)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quote.DeskDrawerNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quote.DeskDrawerNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quote.DesktopMaterial)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quote.DesktopMaterial)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quote.RushSpeed)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quote.RushSpeed)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Quote.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -1,0 +1,13 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "MegaDesk - Team Bountiful";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to MegaDesk!</h1>
+    <h2><em>Build the desk of your dreams!</em></h2>
+    <a asp-page="/Quotes/Create"><input type="button" class="btn" value="Add Quote"></a>
+    <a asp-page="/Quotes/Index"><input type="button" class="btn" value="View or Search Quotes"></a>
+    <a asp-page="/Logout"><input type="button" class="btn" value="Exit and Log Out"></a>
+</div>

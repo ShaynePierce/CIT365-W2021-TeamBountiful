@@ -1,0 +1,72 @@
+﻿@page
+@model WebMegaDesk.Pages.Quotes.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].CustomerFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].CustomerLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].DeskWidth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].DeskDepth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].DeskDrawerNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].DesktopMaterial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quote[0].RushSpeed)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Quote) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeskWidth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeskDepth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeskDrawerNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DesktopMaterial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RushSpeed)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
