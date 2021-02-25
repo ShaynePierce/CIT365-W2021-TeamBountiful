@@ -35,18 +35,44 @@
             </div>
             <div class="form-group">
                 <label asp-for="Quote.DeskDrawerNumber" class="control-label"></label>
-                <input asp-for="Quote.DeskDrawerNumber" class="form-control" />
-                <span asp-validation-for="Quote.DeskDrawerNumber" class="text-danger"></span>
+                <select asp-for="Quote.DeskDrawerNumber" class="form-control">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                </select>
+@*                 <span asp-validation-for="Quote.DeskDrawerNumber" class="text-danger"></span>
+*@
             </div>
             <div class="form-group">
                 <label asp-for="Quote.DesktopMaterial" class="control-label"></label>
-                <input asp-for="Quote.DesktopMaterial" class="form-control" />
-                <span asp-validation-for="Quote.DesktopMaterial" class="text-danger"></span>
+                <select asp-for="Quote.DesktopMaterial" class="form-control">
+                <option value="@Model.MaterialValues[0]">@Model.MaterialNames[0]</option>
+                <option value="@Model.MaterialValues[1]">@Model.MaterialNames[1]</option>
+                <option value="@Model.MaterialValues[2]">@Model.MaterialNames[2]</option>
+                <option value="@Model.MaterialValues[3]">@Model.MaterialNames[3]</option>
+                <option value="@Model.MaterialValues[4]">@Model.MaterialNames[4]</option>
+            </select>
+@*                <span asp-validation-for="Quote.DesktopMaterial" class="text-danger"></span>
+*@
             </div>
             <div class="form-group">
                 <label asp-for="Quote.RushSpeed" class="control-label"></label>
-                <input asp-for="Quote.RushSpeed" class="form-control" />
-                <span asp-validation-for="Quote.RushSpeed" class="text-danger"></span>
+                <select asp-for="Quote.RushSpeed" class="form-control">
+                    <option value="0">Normal Delivery</option>
+                    <option value="3">3 Day Delivery</option>
+                    <option value="5">5 Day Delivery</option>
+                    <option value="7">7 Day Delivery</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quote.QuoteDate" class="control-label"></label>
+                <input asp-for="Quote.QuoteDate" class="form-control" />
+                <span asp-validation-for="Quote.QuoteDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

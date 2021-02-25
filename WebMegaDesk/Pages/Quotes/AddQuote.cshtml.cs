@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using WebMegaDesk.Data;
 using WebMegaDesk.Models;
 
 namespace WebMegaDesk.Pages.Quotes
@@ -27,6 +24,9 @@ namespace WebMegaDesk.Pages.Quotes
         [BindProperty]
         public Quote Quote { get; set; }
 
+        public string[] MaterialNames = Enum.GetNames(typeof(DesktopMaterials));
+        public int[] MaterialValues = (int[])Enum.GetValues(typeof(DesktopMaterials));
+
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
@@ -38,7 +38,7 @@ namespace WebMegaDesk.Pages.Quotes
             _context.Quote.Add(Quote);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./DisplayQuote", new { id = Quote.ID } );
         }
     }
 }

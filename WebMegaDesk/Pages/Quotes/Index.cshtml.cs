@@ -28,13 +28,13 @@ namespace WebMegaDesk.Pages.Quotes
 
         public async Task OnGetAsync()
         {
-            var names = from n in _context.Quote
+/*            var names = from n in _context.Quote
                         select n;
-            if (!string.IsNullOrEmpty(SearchString))
+*//*            if (!string.IsNullOrEmpty(SearchString))
             {
                 names = names.Where(s => s.CustomerFullName.Contains(SearchString));
             }
-
+*/
                 Quote = await _context.Quote.ToListAsync();
         }
     }
