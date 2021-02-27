@@ -74,6 +74,90 @@ namespace WebMegaDesk.Models
                         DesktopMaterial = DesktopMaterials.Oak,
                         RushSpeed = 3,
                         QuoteDate = DateTime.Now.AddDays(-rand.Next(1, 100))
+                    },
+
+                    new Quote
+                    {
+                        CustomerFirstName = "David",
+                        CustomerLastName = "Smith",
+                        DeskWidth = rand.Next(Quote.MINWIDTH, Quote.MAXWIDTH + 1),
+                        DeskDepth = rand.Next(Quote.MINDEPTH, Quote.MAXDEPTH + 1),
+                        DeskDrawerNumber = rand.Next(0, Quote.MAXDRAWERS + 1),
+                        DesktopMaterial = DesktopMaterials.Veneer,
+                        RushSpeed = 7,
+                        QuoteDate = DateTime.Now.AddDays(-rand.Next(1, 100))
+                    },
+
+                    new Quote
+                    {
+                        CustomerFirstName = "Mary",
+                        CustomerLastName = "Jones",
+                        DeskWidth = rand.Next(Quote.MINWIDTH, Quote.MAXWIDTH + 1),
+                        DeskDepth = rand.Next(Quote.MINDEPTH, Quote.MAXDEPTH + 1),
+                        DeskDrawerNumber = rand.Next(0, Quote.MAXDRAWERS + 1),
+                        DesktopMaterial = DesktopMaterials.Pine,
+                        RushSpeed = 7,
+                        QuoteDate = DateTime.Now.AddDays(-rand.Next(1, 100))
+                    },
+
+                    new Quote
+                    {
+                        CustomerFirstName = "Susan",
+                        CustomerLastName = "White",
+                        DeskWidth = rand.Next(Quote.MINWIDTH, Quote.MAXWIDTH + 1),
+                        DeskDepth = rand.Next(Quote.MINDEPTH, Quote.MAXDEPTH + 1),
+                        DeskDrawerNumber = rand.Next(0, Quote.MAXDRAWERS + 1),
+                        DesktopMaterial = DesktopMaterials.Laminate,
+                        RushSpeed = 5,
+                        QuoteDate = DateTime.Now.AddDays(-rand.Next(1, 100))
+                    },
+
+                    new Quote
+                    {
+                        CustomerFirstName = "Greg",
+                        CustomerLastName = "Allen",
+                        DeskWidth = rand.Next(Quote.MINWIDTH, Quote.MAXWIDTH + 1),
+                        DeskDepth = rand.Next(Quote.MINDEPTH, Quote.MAXDEPTH + 1),
+                        DeskDrawerNumber = rand.Next(0, Quote.MAXDRAWERS + 1),
+                        DesktopMaterial = DesktopMaterials.Oak,
+                        RushSpeed = 3,
+                        QuoteDate = DateTime.Now.AddDays(-rand.Next(1, 100))
+                    },
+
+                    new Quote
+                    {
+                        CustomerFirstName = "Samantha",
+                        CustomerLastName = "Howard",
+                        DeskWidth = rand.Next(Quote.MINWIDTH, Quote.MAXWIDTH + 1),
+                        DeskDepth = rand.Next(Quote.MINDEPTH, Quote.MAXDEPTH + 1),
+                        DeskDrawerNumber = rand.Next(0, Quote.MAXDRAWERS + 1),
+                        DesktopMaterial = DesktopMaterials.Rosewood,
+                        RushSpeed = 0,
+                        QuoteDate = DateTime.Now.AddDays(-rand.Next(1, 100))
+                    },
+
+                    new Quote
+                    {
+                        CustomerFirstName = "Blake",
+                        CustomerLastName = "Nash",
+                        DeskWidth = rand.Next(Quote.MINWIDTH, Quote.MAXWIDTH + 1),
+                        DeskDepth = rand.Next(Quote.MINDEPTH, Quote.MAXDEPTH + 1),
+                        DeskDrawerNumber = rand.Next(0, Quote.MAXDRAWERS + 1),
+                        DesktopMaterial = DesktopMaterials.Veneer,
+                        RushSpeed = 5,
+                        QuoteDate = DateTime.Now.AddDays(-rand.Next(1, 100))
+                    },
+
+                    new Quote
+                    {
+                        CustomerFirstName = "Joel",
+                        CustomerLastName = "Jenson",
+                        DeskWidth = rand.Next(Quote.MINWIDTH, Quote.MAXWIDTH + 1),
+                        DeskDepth = rand.Next(Quote.MINDEPTH, Quote.MAXDEPTH + 1),
+                        DeskDrawerNumber = rand.Next(0, Quote.MAXDRAWERS + 1),
+                        DesktopMaterial = DesktopMaterials.Laminate,
+                        RushSpeed = 7,
+                        QuoteDate = DateTime.Now.AddDays(-rand.Next(1, 100))
                     }
 
                 );
