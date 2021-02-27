@@ -10,14 +10,31 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
+<form>
+    <p>
+        Search Name/Notes:
+        <input type="text" name="SearchString" value="@Model.SearchString" />
+        <input type="submit" value="find" class="btn" />
+        <a asp-page="./Index">Back to full List</a>
+    </p>
+</form>
+<table class="table table-hover">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Quote[0].CustomerFirstName)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.QuoteDateSort" asp-route-searchString="@Model.SearchString" class="@Model.DateSortState">
+                    @Html.DisplayNameFor(model => model.Quote[0].QuoteDate)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quote[0].CustomerLastName)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.CustomerFirstNameSort" asp-route-searchString="@Model.SearchString" class="@Model.FirstNameSortState">
+                    @Html.DisplayNameFor(model => model.Quote[0].CustomerFirstName)
+                </a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.CustomerLastNameSort" asp-route-searchString="@Model.SearchString" class="@Model.LastNameSortState">
+                    @Html.DisplayNameFor(model => model.Quote[0].CustomerLastName)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Quote[0].DeskWidth)
@@ -29,7 +46,9 @@
                 @Html.DisplayNameFor(model => model.Quote[0].DeskDrawerNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quote[0].DesktopMaterial)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.MaterialSort" asp-route-searchString="@Model.SearchString" class="@Model.MaterialSortState">
+                    @Html.DisplayNameFor(model => model.Quote[0].DesktopMaterial)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Quote[0].RushSpeed)
@@ -39,7 +58,10 @@
     </thead>
     <tbody>
 @foreach (var item in Model.Quote) {
-        <tr>
+        <tr onclick="window.location='./Quotes/DisplayQuote?id=@item.ID'">
+            <td>
+                @Html.DisplayFor(modelItem => item.QuoteDate)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CustomerFirstName)
             </td>
@@ -63,7 +85,7 @@
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./DisplayQuote" asp-route-id="@item.ID">Details</a> |
+                @*<a asp-page="./DisplayQuote" asp-route-id="@item.ID">Details</a> |*@
                 <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
             </td>
         </tr>
