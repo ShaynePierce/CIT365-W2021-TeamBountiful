@@ -45,6 +45,28 @@ namespace WebMegaDesk.Models
                         DeskDrawerNumber = 7,
                         DesktopMaterial = DesktopMaterials.Pine,
                         RushSpeed = 0
+                    },
+
+                    new Quote
+                    {
+                        CustomerFirstName = "Kyle",
+                        CustomerLastName = "Johnson",
+                        DeskWidth = 50,
+                        DeskDepth = 30,
+                        DeskDrawerNumber = 1,
+                        DesktopMaterial = DesktopMaterials.Veneer,
+                        RushSpeed = 7
+                    },
+
+                    new Quote
+                    {
+                        CustomerFirstName = "Tommy",
+                        CustomerLastName = "Knorr",
+                        DeskWidth = 65,
+                        DeskDepth = 40,
+                        DeskDrawerNumber = 5,
+                        DesktopMaterial = DesktopMaterials.Oak,
+                        RushSpeed = 3
                     }
 
                 );
