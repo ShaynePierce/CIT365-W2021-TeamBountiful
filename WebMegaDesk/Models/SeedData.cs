@@ -22,6 +22,8 @@ namespace WebMegaDesk.Models
                 {
                     return;   // DB has been seeded
                 }
+                
+                Random rand = new Random();
 
                 context.Quote.AddRange(
 
@@ -33,7 +35,9 @@ namespace WebMegaDesk.Models
                         DeskDepth = 32,
                         DeskDrawerNumber = 4,
                         DesktopMaterial = DesktopMaterials.Rosewood,
-                        RushSpeed = 3
+                        RushSpeed = 3,
+                        QuoteDate = DateTime.Now.AddDays(-rand.Next(1, 100))
+
                     },
 
                     new Quote
@@ -44,7 +48,8 @@ namespace WebMegaDesk.Models
                         DeskDepth = 24,
                         DeskDrawerNumber = 7,
                         DesktopMaterial = DesktopMaterials.Pine,
-                        RushSpeed = 0
+                        RushSpeed = 0,
+                        QuoteDate = DateTime.Now.AddDays(-rand.Next(1, 100))
                     },
 
                     new Quote
@@ -55,7 +60,8 @@ namespace WebMegaDesk.Models
                         DeskDepth = 30,
                         DeskDrawerNumber = 1,
                         DesktopMaterial = DesktopMaterials.Veneer,
-                        RushSpeed = 7
+                        RushSpeed = 7,
+                        QuoteDate = DateTime.Now.AddDays(-rand.Next(1, 100))
                     },
 
                     new Quote
@@ -66,7 +72,8 @@ namespace WebMegaDesk.Models
                         DeskDepth = 40,
                         DeskDrawerNumber = 5,
                         DesktopMaterial = DesktopMaterials.Oak,
-                        RushSpeed = 3
+                        RushSpeed = 3,
+                        QuoteDate = DateTime.Now.AddDays(-rand.Next(1, 100))
                     }
 
                 );
