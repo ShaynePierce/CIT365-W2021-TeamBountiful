@@ -43,6 +43,8 @@ namespace WebMegaDesk.Pages.Quotes
         public string MaterialSortState { get; set; }
         public string DateSortState { get; set; }
 
+        public string[] MaterialNames = Enum.GetNames(typeof(DesktopMaterials));
+
         public async Task OnGetAsync(string sortOrder, string searchString)
         {
             CustomerFirstNameSort = sortOrder == "first_name" ? "first_name_desc" : "first_name";
@@ -53,22 +55,14 @@ namespace WebMegaDesk.Pages.Quotes
 
             IQueryable<Quote> quotes = from s in _context.Quote
                                            select s;
-            string matchedMaterials = "";
-            foreach (int i in Enum.GetValues(typeof(DesktopMaterials)))                
-            {
-                if (Enum.GetName(typeof(DesktopMaterials), i - 1).ToLower().Contains(SearchString.ToLower()))
-                {
-                    matchedMaterials += (i - 1).ToString();
-                } 
-            }
-
+  
             if (!String.IsNullOrEmpty(searchString))
             {
                 quotes = quotes.Where(
                     s => s.CustomerFirstName.Contains(searchString)
                     || s.CustomerLastName.Contains(searchString)
-                    || matchedMaterials.Contains(s.DesktopMaterial.ToString())
-                ); ;
+                    || s.DesktopMaterial.Equals((DesktopMaterials)Models.Quote.SearchEnum(searchString))
+                );
             }
 
             //CustomerFirstName
@@ -120,15 +114,6 @@ namespace WebMegaDesk.Pages.Quotes
             }
 
             Quote = await quotes.AsNoTracking().ToListAsync();
-            /*            var names = from n in _context.Quote
-                                    select n;
-            *//*            if (!string.IsNullOrEmpty(SearchString))
-                        {
-                            names = names.Where(s => s.CustomerFullName.Contains(SearchString));
-                        }
-            
-            Quote = await _context.Quote.ToListAsync();
-            */
         }
     }
 }

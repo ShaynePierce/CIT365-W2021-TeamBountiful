@@ -118,3 +118,13 @@ button.accept-policy {
 .table-hover tbody tr:hover {
     cursor:pointer;
 }
+
+header.container {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+@media only screen and (min-width: 992px) {
+    .table-responsive {
+        display: table;
+    }
+}

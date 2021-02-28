@@ -15,7 +15,6 @@ namespace WebMegaDesk.Models
 
     public class Quote
     {
-   
         /* Constants to avoid "Magic Numbers" */
         private const double BASECOST = 200.00;
         private const double MAX_AREA_FREE = 1000;
@@ -30,6 +29,15 @@ namespace WebMegaDesk.Models
         public const int MAXDEPTH = 48;
         public const int MINDRAWERS = 0;
         public const int MAXDRAWERS = 7;
+
+        public static int SearchEnum(string FindIt)
+        {
+            foreach (var enumName in Enum.GetNames(typeof(DesktopMaterials)))
+                if (enumName.ToLower().Contains(FindIt.ToLower()))
+                    return (int)Enum.Parse(typeof(DesktopMaterials), enumName);
+
+            return -1;
+        }
 
         private readonly int[,] RUSHPRICES = new int[3, 3]
         {
