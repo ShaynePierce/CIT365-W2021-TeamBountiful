@@ -5,81 +5,126 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="container row">
+    <div class="container col-lg-8">
+        <h1>Create</h1>
+        <h4>Quote</h4>
+        <hr />
+        <div class="container w-100">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Quote.CustomerFirstName" class="control-label"></label>
+                    <input asp-for="Quote.CustomerFirstName" class="form-control" />
+                    <span asp-validation-for="Quote.CustomerFirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quote.CustomerLastName" class="control-label"></label>
+                    <input asp-for="Quote.CustomerLastName" class="form-control" />
+                    <span asp-validation-for="Quote.CustomerLastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quote.DeskWidth" class="control-label"></label>
+                    <input asp-for="Quote.DeskWidth" class="form-control" />
+                    <span asp-validation-for="Quote.DeskWidth" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quote.DeskDepth" class="control-label"></label>
+                    <input asp-for="Quote.DeskDepth" class="form-control" />
+                    <span asp-validation-for="Quote.DeskDepth" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quote.DeskDrawerNumber" class="control-label"></label>
+                    <select asp-for="Quote.DeskDrawerNumber" class="form-control">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                    </select>
+                    @*                 <span asp-validation-for="Quote.DeskDrawerNumber" class="text-danger"></span>
+                    *@
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quote.DesktopMaterial" class="control-label"></label>
+                    <select asp-for="Quote.DesktopMaterial" class="form-control material-selector" onchange="MakeMaterialChange(value)">
+                        <option value="@Model.MaterialValues[0]">@Model.MaterialNames[0]</option>
+                        <option value="@Model.MaterialValues[1]">@Model.MaterialNames[1]</option>
+                        <option value="@Model.MaterialValues[2]">@Model.MaterialNames[2]</option>
+                        <option value="@Model.MaterialValues[3]">@Model.MaterialNames[3]</option>
+                        <option value="@Model.MaterialValues[4]">@Model.MaterialNames[4]</option>
+                    </select>
+                    @*                <span asp-validation-for="Quote.DesktopMaterial" class="text-danger"></span>
+                    *@
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quote.RushSpeed" class="control-label"></label>
+                    <select asp-for="Quote.RushSpeed" class="form-control">
+                        <option value="0">Normal Delivery</option>
+                        <option value="3">3 Day Delivery</option>
+                        <option value="5">5 Day Delivery</option>
+                        <option value="7">7 Day Delivery</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quote.QuoteDate" class="control-label"></label>
+                    <input asp-for="Quote.QuoteDate" class="form-control" />
+                    <span asp-validation-for="Quote.QuoteDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
 
-<h4>Quote</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Quote.CustomerFirstName" class="control-label"></label>
-                <input asp-for="Quote.CustomerFirstName" class="form-control" />
-                <span asp-validation-for="Quote.CustomerFirstName" class="text-danger"></span>
+    <div class="container col-lg-3">
+        <div class="material-card card material-pine" onclick="MakeMaterialChangeCard('Pine')">
+            <h4 class="card-header">Pine</h4>
+            <div class="card-body">
+                <picture>
+                    <img src="~/images/pine.jpg" alt="Pine Surface" />
+                </picture>
             </div>
-            <div class="form-group">
-                <label asp-for="Quote.CustomerLastName" class="control-label"></label>
-                <input asp-for="Quote.CustomerLastName" class="form-control" />
-                <span asp-validation-for="Quote.CustomerLastName" class="text-danger"></span>
+        </div>
+        <div class="material-card card material-laminate" onclick="MakeMaterialChangeCard('Laminate')">
+            <h4 class="card-header">Laminate</h4>
+            <div class="card-body">
+                <picture>
+                    <img src="~/images/laminate.jpg" alt="Laminate Surface" />
+                </picture>
             </div>
-            <div class="form-group">
-                <label asp-for="Quote.DeskWidth" class="control-label"></label>
-                <input asp-for="Quote.DeskWidth" class="form-control" />
-                <span asp-validation-for="Quote.DeskWidth" class="text-danger"></span>
+        </div>
+        <div class="material-card card material-veneer" onclick="MakeMaterialChangeCard('Veneer')">
+            <h4 class="card-header">Veneer</h4>
+            <div class="card-body">
+                <picture>
+                    <img src="~/images/veneer.jpg" alt="Veneer Surface" />
+                </picture>
             </div>
-            <div class="form-group">
-                <label asp-for="Quote.DeskDepth" class="control-label"></label>
-                <input asp-for="Quote.DeskDepth" class="form-control" />
-                <span asp-validation-for="Quote.DeskDepth" class="text-danger"></span>
+        </div>
+        <div class="material-card card material-oak" onclick="MakeMaterialChangeCard('Oak')">
+            <h4 class="card-header">Oak</h4>
+            <div class="card-body">
+                <picture>
+                    <img src="~/images/oak.jpg" alt="Oak Surface" />
+                </picture>
             </div>
-            <div class="form-group">
-                <label asp-for="Quote.DeskDrawerNumber" class="control-label"></label>
-                <select asp-for="Quote.DeskDrawerNumber" class="form-control">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                </select>
-@*                 <span asp-validation-for="Quote.DeskDrawerNumber" class="text-danger"></span>
-*@
+        </div>
+        <div class="material-card card material-rosewood" onclick="MakeMaterialChangeCard('Rosewood')">
+            <h4 class="card-header">Rosewood</h4>
+            <div class="card-body">
+                <picture>
+                    <img src="~/images/rosewood.jpg" alt="Rosewood Surface" />
+                </picture>
             </div>
-            <div class="form-group">
-                <label asp-for="Quote.DesktopMaterial" class="control-label"></label>
-                <select asp-for="Quote.DesktopMaterial" class="form-control">
-                <option value="@Model.MaterialValues[0]">@Model.MaterialNames[0]</option>
-                <option value="@Model.MaterialValues[1]">@Model.MaterialNames[1]</option>
-                <option value="@Model.MaterialValues[2]">@Model.MaterialNames[2]</option>
-                <option value="@Model.MaterialValues[3]">@Model.MaterialNames[3]</option>
-                <option value="@Model.MaterialValues[4]">@Model.MaterialNames[4]</option>
-            </select>
-@*                <span asp-validation-for="Quote.DesktopMaterial" class="text-danger"></span>
-*@
-            </div>
-            <div class="form-group">
-                <label asp-for="Quote.RushSpeed" class="control-label"></label>
-                <select asp-for="Quote.RushSpeed" class="form-control">
-                    <option value="0">Normal Delivery</option>
-                    <option value="3">3 Day Delivery</option>
-                    <option value="5">5 Day Delivery</option>
-                    <option value="7">7 Day Delivery</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Quote.QuoteDate" class="control-label"></label>
-                <input asp-for="Quote.QuoteDate" class="form-control" />
-                <span asp-validation-for="Quote.QuoteDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
+
 
 <div>
     <a asp-page="Index">Back to List</a>

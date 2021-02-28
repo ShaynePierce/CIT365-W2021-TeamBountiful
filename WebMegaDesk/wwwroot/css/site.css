@@ -14,7 +14,23 @@ body {
     background-color: mintcream;
 }
 
-        /*a.navbar-brand {
+.material-card picture {
+    width: 100%;
+    position: relative;
+    display: block;
+}
+
+.material-card picture img {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.selected-border {
+    border-width: thick;
+}
+
+/*a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
