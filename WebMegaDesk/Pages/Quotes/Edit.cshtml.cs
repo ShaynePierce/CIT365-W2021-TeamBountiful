@@ -15,6 +15,9 @@ namespace WebMegaDesk.Pages.Quotes
     {
         private readonly WebMegaDesk.Data.WebMegaDeskContext _context;
 
+        public string[] MaterialNames = Enum.GetNames(typeof(DesktopMaterials));
+        public int[] MaterialValues = (int[])Enum.GetValues(typeof(DesktopMaterials));
+
         public EditModel(WebMegaDesk.Data.WebMegaDeskContext context)
         {
             _context = context;
