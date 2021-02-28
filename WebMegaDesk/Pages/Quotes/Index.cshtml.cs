@@ -53,13 +53,22 @@ namespace WebMegaDesk.Pages.Quotes
 
             IQueryable<Quote> quotes = from s in _context.Quote
                                            select s;
+            string matchedMaterials = "";
+            foreach (int i in Enum.GetValues(typeof(DesktopMaterials)))                
+            {
+                if (Enum.GetName(typeof(DesktopMaterials), i - 1).ToLower().Contains(SearchString.ToLower()))
+                {
+                    matchedMaterials += (i - 1).ToString();
+                } 
+            }
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 quotes = quotes.Where(
-                    s => s.CustomerFirstName.Contains(searchString) 
+                    s => s.CustomerFirstName.Contains(searchString)
                     || s.CustomerLastName.Contains(searchString)
-                    //|| s.DesktopMaterial.Contains(searchString)
-                );
+                    || matchedMaterials.Contains(s.DesktopMaterial.ToString())
+                ); ;
             }
 
             //CustomerFirstName
