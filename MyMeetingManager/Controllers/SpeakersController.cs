@@ -22,7 +22,13 @@ namespace MyMeetingManager.Controllers
         // GET: Speakers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Speakers.ToListAsync());
+            var speakers = await _context.Speakers
+                .Include(m => m.Member)
+                .Include(m => m.Meeting)
+                .AsNoTracking()
+                .OrderBy(s => s.Meeting.MeetingDate).ThenBy(m => m.Member.Name)
+                .ToListAsync();
+            return View(speakers);
         }
 
         // GET: Speakers/Details/5
@@ -34,6 +40,8 @@ namespace MyMeetingManager.Controllers
             }
 
             var speaker = await _context.Speakers
+                .Include(m => m.Member)
+                .Include(m => m.Meeting)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (speaker == null)
             {
@@ -46,6 +54,10 @@ namespace MyMeetingManager.Controllers
         // GET: Speakers/Create
         public IActionResult Create()
         {
+            var members = _context.Members.OrderBy(m => m.Name).ToList();
+            ViewBag.MemberList = members;
+            var meetings = _context.Meetings.Where(d => d.MeetingDate > DateTime.Now.AddDays(-1)).OrderBy(d => d.MeetingDate).ToList();
+            ViewBag.MeetingList = meetings;
             return View();
         }
 
@@ -56,6 +68,9 @@ namespace MyMeetingManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Topic,Minutes")] Speaker speaker)
         {
+            speaker.Member = GetSelectedMember("MemberSelect");
+            speaker.Meeting = GetSelectedMeeting("MeetingSelect");
+
             if (ModelState.IsValid)
             {
                 _context.Add(speaker);
@@ -64,6 +79,34 @@ namespace MyMeetingManager.Controllers
             }
             return View(speaker);
         }
+
+        public Member GetSelectedMember(String FormElement)
+        {
+            Member member = null;
+            try
+            {
+                member = _context.Members.Find(int.Parse(Request.Form[FormElement][0]));
+            }
+            catch (Exception)
+            {
+                //do nothing
+            }
+            return member;
+        }
+        public Meeting GetSelectedMeeting(String FormElement)
+        {
+            Meeting meeting = null;
+            try
+            {
+                meeting = _context.Meetings.Find(int.Parse(Request.Form[FormElement][0]));
+            }
+            catch (Exception)
+            {
+                //do nothing
+            }
+            return meeting;
+        }
+
 
         // GET: Speakers/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -78,6 +121,12 @@ namespace MyMeetingManager.Controllers
             {
                 return NotFound();
             }
+
+            var members = _context.Members.OrderBy(m => m.Name).ToList();
+            ViewBag.MemberList = members;
+            var meetings = _context.Meetings.OrderBy(d => d.MeetingDate).ToList();
+            ViewBag.MeetingList = meetings;
+
             return View(speaker);
         }
 
@@ -92,6 +141,9 @@ namespace MyMeetingManager.Controllers
             {
                 return NotFound();
             }
+
+            speaker.Member = GetSelectedMember("MemberSelect");
+            speaker.Meeting = GetSelectedMeeting("MeetingSelect");
 
             if (ModelState.IsValid)
             {
@@ -125,6 +177,8 @@ namespace MyMeetingManager.Controllers
             }
 
             var speaker = await _context.Speakers
+                .Include(m => m.Member)
+                .Include(m => m.Meeting)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (speaker == null)
             {

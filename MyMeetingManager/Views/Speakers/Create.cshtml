@@ -13,6 +13,30 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label for="MeetingSelect" class="control-label">Meeting</label>
+                <select name="MeetingSelect" id="MeetingSelect" class="form-control select2-single">
+                    <option value="">--Select a Meeting--</option>
+                    @{
+                        foreach (Meeting m in ViewBag.MeetingList)
+                        {
+                            @:<option value="@m.ID">@m.MeetingDate.ToShortDateString()</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="MemberSelect" class="control-label">Member</label>
+                <select name="MemberSelect" id="MemberSelect" class="form-control select2-single">
+                    <option value="">--Select a Member--</option>
+                    @{
+                        foreach (Member m in ViewBag.MemberList)
+                        {
+                            @:<option value="@m.ID">@m.Salutation @m.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
                 <label asp-for="Topic" class="control-label"></label>
                 <input asp-for="Topic" class="form-control" />
                 <span asp-validation-for="Topic" class="text-danger"></span>

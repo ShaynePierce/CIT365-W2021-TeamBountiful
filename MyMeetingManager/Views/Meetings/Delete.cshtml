@@ -11,17 +11,126 @@
     <h4>Meeting</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MeetingDate)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MeetingDate)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OptionalRestHymnTitle)
+        @if (Model.FastAndTestimonyMeeting)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.FastAndTestimonyMeeting)
+            </dt>
+            <dd class="col-sm-10">
+            </dd>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ward)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OptionalRestHymnTitle)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ward.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Presiding)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Presiding.Salutation) @Html.DisplayFor(model => model.Presiding.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ConductingLeader)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ConductingLeader.Salutation) @Html.DisplayFor(model => model.ConductingLeader.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Chorister)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Chorister.Salutation) @Html.DisplayFor(model => model.Chorister.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Organist)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Organist.Salutation) @Html.DisplayFor(model => model.Organist.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OpeningHymn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OpeningHymn.Title) #@Html.DisplayFor(model => model.OpeningHymn.Number)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OpeningPrayerMember)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OpeningPrayerMember.Salutation) @Html.DisplayFor(model => model.OpeningPrayerMember.Name)
+        </dd>
+        @if (Model.Announcements != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Announcements)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Announcements)
+            </dd>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SacramentHymn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SacramentHymn.Title) #@Html.DisplayFor(model => model.SacramentHymn.Number)
+        </dd>
+        @if (Model.OptionalRestHymnTitle != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.OptionalRestHymnTitle)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.OptionalRestHymnTitle) by @Html.DisplayFor(model => model.OptionalRestHymnMember.Salutation) @Html.DisplayFor(model => model.OptionalRestHymnMember.Name)
+            </dd>
+        }
+        @if (Model.Speakers.Count > 0)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Speakers)
+            </dt>
+            <dd class="col-sm-10">
+                <table class="table">
+                    <tr>
+                        <th>Speaker Name</th>
+                        <th>Topic</th>
+                        <th>Minutes</th>
+                    </tr>
+                    @foreach (var item in Model.Speakers)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Member.Salutation) @Html.DisplayFor(modelItem => item.Member.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Topic)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Minutes)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </dd>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ClosingHymn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ClosingHymn.Title) #@Html.DisplayFor(model => model.ClosingHymn.Number)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ClosingPrayerMember)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ClosingPrayerMember.Salutation) @Html.DisplayFor(model => model.ClosingPrayerMember.Name)
         </dd>
     </dl>
     

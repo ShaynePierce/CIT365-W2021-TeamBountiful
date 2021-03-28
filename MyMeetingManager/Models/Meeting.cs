@@ -18,7 +18,7 @@ namespace MyMeetingManager.Models
         [Display(Name = "Fast And Testimony Meeting")]
         public Boolean FastAndTestimonyMeeting { get; set; }
         [Display(Name = "Announcements")]
-        public String Announcments { get; set; }
+        public String Announcements { get; set; }
         public Ward Ward { get; set; }
         [Display(Name = "Presiding")]
         public Member Presiding { get; set; }

@@ -46,7 +46,7 @@ namespace MyMeetingManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Announcments")
+                    b.Property<string>("Announcements")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ChoristerID")

@@ -22,7 +22,22 @@ namespace MyMeetingManager.Controllers
         // GET: Meetings
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Meetings.ToListAsync());
+            var meetings = await _context.Meetings
+                .Include(w => w.Ward)
+                .Include(s => s.Speakers)
+                .Include(m => m.Presiding)
+                .Include(m => m.Chorister)
+                .Include(m => m.Organist)
+                .Include(m => m.ConductingLeader)
+                .Include(h => h.OpeningHymn)
+                .Include(m => m.OpeningPrayerMember)
+                .Include(h => h.SacramentHymn)
+                .Include(m => m.OptionalRestHymnMember)
+                .Include(h => h.ClosingHymn)
+                .Include(m => m.ClosingPrayerMember)
+                .ToListAsync();
+
+            return View(meetings);
         }
 
         // GET: Meetings/Details/5
@@ -63,6 +78,15 @@ namespace MyMeetingManager.Controllers
         // GET: Meetings/Create
         public IActionResult Create()
         {
+            var members = _context.Members.OrderBy(m => m.Name).ToList();
+            ViewBag.MemberList = members;
+            var leaders = _context.Members.Where(l => l.isLeader == true).OrderBy(l => l.Name).ToList();
+            ViewBag.LeaderList = leaders;
+            var hymns = _context.Hymns.OrderBy(h => h.Number).ToList();
+            ViewBag.HymnList = hymns;
+            var wards = _context.Wards.OrderBy(w => w.Name).ToList();
+            ViewBag.WardList = wards;
+
             return View();
         }
 
@@ -73,6 +97,27 @@ namespace MyMeetingManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,MeetingDate,OptionalRestHymnTitle")] Meeting meeting)
         {
+            meeting.FastAndTestimonyMeeting = (Request.Form["FastMeeting"].Count > 0);
+            meeting.Ward = GetSelectedWard("WardSelect");
+            meeting.Presiding = GetSelectedMember("PresidingSelect");
+            meeting.ConductingLeader = GetSelectedMember("ConductingSelect");
+            meeting.Chorister = GetSelectedMember("ChoristerSelect");
+            meeting.Organist = GetSelectedMember("OganistSelect");
+            meeting.Organist = GetSelectedMember("OrganistSelect");
+            meeting.OpeningHymn = GetSelectedHymn("OpeningHymnSelect");
+            meeting.OpeningPrayerMember = GetSelectedMember("OpeningPrayerSelect");
+            if (Request.Form["Announcements"].Count > 0) { 
+                meeting.Announcements = Request.Form["Announcements"][0];
+            }
+            meeting.SacramentHymn = GetSelectedHymn("SacramentHymnSelect");
+            if (Request.Form["RestHymnSelect"].Count > 0)
+            {
+                meeting.OptionalRestHymnTitle = Request.Form["RestHymnSelect"][0];
+            }
+            meeting.OptionalRestHymnMember = GetSelectedMember("RestHymnMemberSelect");
+            meeting.ClosingHymn = GetSelectedHymn("ClosingHymnSelect");
+            meeting.ClosingPrayerMember = GetSelectedMember("ClosingPrayerSelect");
+
             if (ModelState.IsValid)
             {
                 _context.Add(meeting);
@@ -82,6 +127,49 @@ namespace MyMeetingManager.Controllers
             return View(meeting);
         }
 
+        public Member GetSelectedMember(String FormElement)
+        {
+            Member member = null;
+            try
+            {
+                member = _context.Members.Find(int.Parse(Request.Form[FormElement][0]));
+            }
+            catch (Exception)
+            {
+                //do nothing
+            }
+            return member;
+        }
+
+        public Ward GetSelectedWard(String FormElement)
+        {
+            Ward ward = null;
+            try
+            {
+                ward = _context.Wards.Find(int.Parse(Request.Form[FormElement][0]));
+            }
+            catch (Exception)
+            {
+                //do nothing
+            }
+            return ward;
+        }
+
+        public Hymn GetSelectedHymn(String FormElement)
+        {
+            Hymn hymn = null;
+            try
+            {
+                hymn = _context.Hymns.Find(int.Parse(Request.Form[FormElement][0]));
+            }
+            catch (Exception)
+            {
+                //do nothing
+            }
+            return hymn;
+        }
+
+
         // GET: Meetings/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -89,6 +177,16 @@ namespace MyMeetingManager.Controllers
             {
                 return NotFound();
             }
+
+            var members = _context.Members.OrderBy(m => m.Name).ToList();
+            ViewBag.MemberList = members;
+            var leaders = _context.Members.Where(l => l.isLeader == true).OrderBy(l => l.Name).ToList();
+            ViewBag.LeaderList = leaders;
+            var hymns = _context.Hymns.OrderBy(h => h.Number).ToList();
+            ViewBag.HymnList = hymns;
+            var wards = _context.Wards.OrderBy(w => w.Name).ToList();
+            ViewBag.WardList = wards;
+
 
             var meeting = await _context.Meetings.FindAsync(id);
             if (meeting == null)
@@ -109,6 +207,27 @@ namespace MyMeetingManager.Controllers
             {
                 return NotFound();
             }
+
+            meeting.Ward = GetSelectedWard("WardSelect");
+            meeting.FastAndTestimonyMeeting = (Request.Form["FastMeeting"].Count > 0);
+            meeting.Presiding = GetSelectedMember("PresidingSelect");
+            meeting.ConductingLeader = GetSelectedMember("ConductingSelect");
+            meeting.Chorister = GetSelectedMember("ChoristerSelect");
+            meeting.Organist = GetSelectedMember("OrganistSelect");
+            meeting.OpeningHymn = GetSelectedHymn("OpeningHymnSelect");
+            meeting.OpeningPrayerMember = GetSelectedMember("OpeningPrayerSelect");
+            if (Request.Form["Announcements"].Count > 0)
+            {
+                meeting.Announcements = Request.Form["Announcements"][0];
+            }
+            meeting.SacramentHymn = GetSelectedHymn("SacramentHymnSelect");
+            if (Request.Form["RestHymnSelect"].Count > 0)
+            {
+                meeting.OptionalRestHymnTitle = Request.Form["RestHymnSelect"][0];
+            }
+            meeting.OptionalRestHymnMember = GetSelectedMember("RestHymnMemberSelect");
+            meeting.ClosingHymn = GetSelectedHymn("ClosingHymnSelect");
+            meeting.ClosingPrayerMember = GetSelectedMember("ClosingPrayerSelect");
 
             if (ModelState.IsValid)
             {
@@ -142,7 +261,22 @@ namespace MyMeetingManager.Controllers
             }
 
             var meeting = await _context.Meetings
+                .Include(w => w.Ward)
+                .Include(s => s.Speakers)
+                    .ThenInclude(m => m.Member)
+                .Include(m => m.Presiding)
+                .Include(m => m.Chorister)
+                .Include(m => m.Organist)
+                .Include(m => m.ConductingLeader)
+                .Include(h => h.OpeningHymn)
+                .Include(m => m.OpeningPrayerMember)
+                .Include(h => h.SacramentHymn)
+                .Include(m => m.OptionalRestHymnMember)
+                .Include(h => h.ClosingHymn)
+                .Include(m => m.ClosingPrayerMember)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
+
             if (meeting == null)
             {
                 return NotFound();

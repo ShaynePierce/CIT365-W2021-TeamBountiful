@@ -13,6 +13,12 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Meeting.MeetingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Member.Name)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Topic)
             </th>
             <th>
@@ -23,6 +29,12 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Meeting.MeetingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Member.Salutation) @Html.DisplayFor(modelItem => item.Member.Name)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Topic)
             </td>

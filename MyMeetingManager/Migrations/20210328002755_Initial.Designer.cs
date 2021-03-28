@@ -10,7 +10,7 @@ using MyMeetingManager.Data;
 namespace MyMeetingManager.Migrations
 {
     [DbContext(typeof(MeetingContext))]
-    [Migration("20210326034135_Initial")]
+    [Migration("20210328002755_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,7 +48,7 @@ namespace MyMeetingManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Announcments")
+                    b.Property<string>("Announcements")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ChoristerID")

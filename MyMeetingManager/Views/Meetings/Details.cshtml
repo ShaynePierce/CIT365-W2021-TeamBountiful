@@ -65,13 +65,13 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OpeningPrayerMember.Salutation) @Html.DisplayFor(model => model.OpeningPrayerMember.Name)
         </dd>
-        @if (Model.Announcments != null)
+        @if (Model.Announcements != null)
         {
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Announcments)
+                @Html.DisplayNameFor(model => model.Announcements)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Announcments)
+                @Html.DisplayFor(model => model.Announcements)
             </dd>
         }
         <dt class="col-sm-2">
@@ -134,5 +134,6 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Delete" asp-route-id="@Model.ID">Delete</a> |
     <a asp-action="Index">Back to List</a>
 </div>

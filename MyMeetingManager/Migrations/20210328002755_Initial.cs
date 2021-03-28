@@ -57,7 +57,7 @@ namespace MyMeetingManager.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MeetingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FastAndTestimonyMeeting = table.Column<bool>(type: "bit", nullable: false),
-                    Announcments = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Announcements = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     WardID = table.Column<int>(type: "int", nullable: true),
                     PresidingID = table.Column<int>(type: "int", nullable: true),
                     ConductingLeaderID = table.Column<int>(type: "int", nullable: true),

@@ -93,7 +93,7 @@ namespace MyMeetingManager.Data
                 meet.Organist = members[rand.Next(3, members.Length)];
                 if (rand.Next(1, 2) == 1)
                 {
-                    meet.Announcments = AnnouncementQuotes[rand.Next(AnnouncementQuotes.Length)];
+                    meet.Announcements = AnnouncementQuotes[rand.Next(AnnouncementQuotes.Length)];
                 }
                 meet.OpeningHymn = hymns[rand.Next(184)];
                 meet.OpeningPrayerMember = members[rand.Next(4, members.Length)];

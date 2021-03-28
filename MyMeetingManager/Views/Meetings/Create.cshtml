@@ -18,9 +18,162 @@
                 <span asp-validation-for="MeetingDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="OptionalRestHymnTitle" class="control-label"></label>
-                <input asp-for="OptionalRestHymnTitle" class="form-control" />
-                <span asp-validation-for="OptionalRestHymnTitle" class="text-danger"></span>
+                <label for="FastMeeting" class="control-label">Fast and Testimony Meeting?</label>
+                <input type="checkbox" name="FastMeeting" id="FastMeeting" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="WardSelect" class="control-label">Ward</label>
+                <select name="WardSelect" id="WardSelect" class="form-control select2-single">
+                    <option value="">--Select a Ward--</option>
+                    @{
+                        foreach (Ward w in ViewBag.WardList)
+                        {
+                            @:<option value="@w.ID">@w.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="PresidingSelect" class="control-label">Presiding</label>
+                <select name="PresidingSelect" id="PresidingSelect" class="form-control select2-single">
+                    <option value="">--Select a Leader--</option>
+                    @{
+                        foreach (Member l in ViewBag.LeaderList)
+                        {
+                            @:<option value="@l.ID">@l.Salutation @l.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ConductingSelect" class="control-label">Conducting</label>
+                <select name="ConductingSelect" id="ConductingSelect" class="form-control select2-single">
+                    <option value="">--Select a Conductor--</option>
+                    @{
+                        foreach (Member l in ViewBag.LeaderList)
+                        {
+                            @:<option value="@l.ID">@l.Salutation @l.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ChoristerSelect" class="control-label">Chorister</label>
+                <select name="ChoristerSelect" id="ChoristerSelect" class="form-control select2-single">
+                    <option value="">--Select a Chorister--</option>
+                    @{
+                        foreach (Member m in ViewBag.MemberList)
+                        {
+                            @:<option value="@m.ID">@m.Salutation @m.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="OrganistSelect" class="control-label">Organist</label>
+                <select name="OrganistSelect" id="OrganistSelect" class="form-control select2-single">
+                    <option value="">--Select a Organist--</option>
+                    @{
+                        foreach (Member m in ViewBag.MemberList)
+                        {
+                            @:<option value="@m.ID">@m.Salutation @m.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="OpeningHymnSelect" class="control-label">Opening Hymn</label>
+                <select name="OpeningHymnSelect" id="OpeningHymnSelect" class="form-control select2-single">
+                    <option value="">--Select a Opening Hymn--</option>
+                    @{
+                        foreach (Hymn h in ViewBag.HymnList)
+                        {
+                            @:<option value="@h.ID">@h.Title #@h.Number</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="OpeningPrayerSelect" class="control-label">Opening Prayer</label>
+                <select name="OpeningPrayerSelect" id="OpeningPrayerSelect" class="form-control select2-single">
+                    <option value="">--Select a Member--</option>
+                    @{
+                        foreach (Member m in ViewBag.MemberList)
+                        {
+                            @:<option value="@m.ID">@m.Salutation @m.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Announcements" class="control-label"></label>
+                <input asp-for="Announcements" class="form-control" />
+                <span asp-validation-for="Announcements" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="SacramentHymnSelect" class="control-label">Sacrament Hymn</label>
+                <select name="SacramentHymnSelect" id="SacramentHymnSelect" class="form-control select2-single">
+                    <option value="">--Select a Sacrament Hymn--</option>
+                    @{
+                        foreach (Hymn h in ViewBag.HymnList)
+                        {
+                            @:<option value="@h.ID">@h.Title #@h.Number</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="RestHymnSelect" class="control-label">Rest Hymn</label>
+                <select name="RestHymnSelect" id="RestHymnSelect" class="form-control select2-single-tags">
+                    <option value="">--Select a Rest Hymn--</option>
+                    @{
+                        foreach (Hymn h in ViewBag.HymnList)
+                        {
+                            @:<option value="@h.ID">@h.Title #@h.Number</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="RestHymnMemberSelect" class="control-label">Rest Hymn Performer</label>
+                <select name="RestHymnMemberSelect" id="RestHymnMemberSelect" class="form-control select2-single">
+                    <option value="">--Select a Member--</option>
+                    @{
+                        foreach (Member m in ViewBag.MemberList)
+                        {
+                            @:<option value="@m.ID">@m.Salutation @m.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="OptionalRestHymnTitle" class="control-label"></label>
+            <input asp-for="OptionalRestHymnTitle" class="form-control" />
+            <span asp-validation-for="OptionalRestHymnTitle" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <label for="ClosingHymnSelect" class="control-label">Closing Hymn</label>
+                <select name="ClosingHymnSelect" id="ClosingHymnSelect" class="form-control select2-single">
+                    <option value="">--Select a Closing Hymn--</option>
+                    @{
+                        foreach (Hymn h in ViewBag.HymnList)
+                        {
+                            @:<option value="@h.ID">@h.Title #@h.Number</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ClosingPrayerSelect" class="control-label">Closing Prayer</label>
+                <select name="ClosingPrayerSelect" id="ClosingPrayerSelect" class="form-control select2-single">
+                    <option value="">--Select a Member--</option>
+                    @{
+                        foreach (Member m in ViewBag.MemberList)
+                        {
+                            @:<option value="@m.ID">@m.Salutation @m.Name</option>
+                        }
+                    }
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
