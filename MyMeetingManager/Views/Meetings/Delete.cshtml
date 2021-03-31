@@ -1,14 +1,20 @@
 ﻿@model MyMeetingManager.Models.Meeting
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Remove Meeting";
 }
 
-<h1>Delete</h1>
-
+<h1 class="text-center">Remove Meeting</h1>
+<hr />
 <h3>Are you sure you want to delete this?</h3>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="ID" />
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a class="btn btn-info" asp-action="Index">Back to List</a>
+</form>
+
+
 <div>
-    <h4>Meeting</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -133,10 +139,11 @@
             @Html.DisplayFor(model => model.ClosingPrayerMember.Salutation) @Html.DisplayFor(model => model.ClosingPrayerMember.Name)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+
+    @*    <form asp-action="Delete">
+            <input type="hidden" asp-for="ID" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+    *@
 </div>

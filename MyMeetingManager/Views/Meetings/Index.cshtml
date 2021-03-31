@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<MyMeetingManager.Models.Meeting>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Meetings";
 }
 
-<h1>Index</h1>
-
+<h1 class="text-center">Meetings</h1>
+<hr />
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-info" asp-action="Create">New Meeting</a>
 </p>
 <table class="table table-sm table-responsive table-bordered table-hover">
     <thead>

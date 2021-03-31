@@ -2,7 +2,48 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<div class="card-container container d-flex flex-column justify-content-center align-items-center">
+    <div class="row justify-content-center">
+        <div class="col-sm-4">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Meetings" asp-action="Index">
+                <div class="card">
+                    <img class="card-img" src="/images/meetings.jpg" alt="Meetings">
+                    <h4 class="card-title text-center">Meetings</h4>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-4">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Members" asp-action="Index">
+                <div class="card">
+                    <img class="card-img" src="/images/members.jpg" alt="Members">
+                    <h4 class="card-title text-center">Members</h4>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-4">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Speakers" asp-action="Index">
+                <div class="card">
+                    <img class="card-img" src="/images/speakers.jpg" alt="Speakers">
+                    <h4 class="card-title text-center">Speakers</h4>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-4">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Hymns" asp-action="Index">
+                <div class="card">
+                    <img class="card-img" src="/images/hymnal.jpg" alt="Hymns">
+                    <h4 class="card-title text-center">Hymns</h4>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-4">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Wards" asp-action="Index">
+                <div class="card">
+                    <img class="card-img" src="/images/wards.jpg" alt="Wards">
+                    <h4 class="card-title text-center">Wards</h4>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
