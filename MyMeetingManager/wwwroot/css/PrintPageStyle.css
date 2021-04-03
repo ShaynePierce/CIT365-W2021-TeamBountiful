@@ -1,0 +1,26 @@
+﻿body {
+    font-family: Garamond, Georgia, 'Times New Roman', serif;
+    max-width: 720px;
+    font-size: 18px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+span.program-element {
+    text-align: left;
+    grid-column:1/2;
+}
+
+span.program-participant {
+    grid-column: 2/4;
+    text-align: right;
+    margin-left: auto;
+}
+
+.center, hr, sacrament {
+    grid-column: 1/4;
+    text-align: center;
+}
