@@ -75,43 +75,6 @@ namespace MyMeetingManager.Controllers
             return View(meeting);
         }
 
-
-        /* Trying to add PrintPage functionality to Meeting Controller?
-         */
-        public async Task<IActionResult> PagePrint(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            //var meeting = await _context.Meetings
-            //    .FirstOrDefaultAsync(m => m.ID == id);
-            var meeting = await _context.Meetings
-                .Include(w => w.Ward)
-                .Include(s => s.Speakers)
-                    .ThenInclude(m => m.Member)
-                .Include(m => m.Presiding)
-                .Include(m => m.Chorister)
-                .Include(m => m.Organist)
-                .Include(m => m.ConductingLeader)
-                .Include(h => h.OpeningHymn)
-                .Include(m => m.OpeningPrayerMember)
-                .Include(h => h.SacramentHymn)
-                .Include(m => m.OptionalRestHymnMember)
-                .Include(h => h.ClosingHymn)
-                .Include(m => m.ClosingPrayerMember)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.ID == id);
-
-            if (meeting == null)
-            {
-                return NotFound();
-            }
-
-            return View(meeting);
-        }
-
         // GET: Meetings/Create
         public IActionResult Create()
         {

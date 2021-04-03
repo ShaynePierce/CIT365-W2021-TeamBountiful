@@ -13,26 +13,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID" />
             <div class="form-group">
-                <label asp-for="MeetingDate" class="control-label"></label>
-                <input asp-for="MeetingDate" class="form-control" />
-                <span asp-validation-for="MeetingDate" class="text-danger"></span>
+                <label asp-for="MeetingDate" class="control-label col-md-3"></label>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(model => model.MeetingDate, "{0:yyyy-MM-dd}", htmlAttributes: new { @type = "date", @class = "form-control" })
+                    <span asp-validation-for="MeetingDate" class="text-danger"></span>
+                </div>
             </div>
 
-            <div class="form-group form-check form-switch">
-                <label class="form-check-label" for="FastMeeting">Fast and Testimony Meeting?</label> &nbsp;&nbsp;&nbsp;&nbsp;
-                <input class="form-check-input" type="checkbox" name="FastMeeting" id="FastMeeting" />
-                @{ if (Model.FastAndTestimonyMeeting)
-                    { @: checked
-                    } } 
+            <div class="form-group form-check-inline form-switch form-switch-md">
+                <label class="form-check-label" for="FastMeeting">@Html.DisplayNameFor(model => Model.FastAndTestimonyMeeting)</label>
+                <input class="form-check-input" name="FastMeeting" type="checkbox" id="FastMeeting" asp-for="FastAndTestimonyMeeting">
             </div>
 
-@*            <div class="form-group">
-                <label for="FastMeeting" class="control-label">Fast and Testimony Meeting?</label>
-                <input type="checkbox" name="FastMeeting" id="FastMeeting" class="form-control"
-                       @{ if (Model.FastAndTestimonyMeeting) { @: checked
-                       } } />
-            </div>
-*@            <div class="form-group">
+            <div class="form-group">
                 <label for="WardSelect" class="control-label"></label>
                 <select name="WardSelect" id="WardSelect" class="form-control select2-single">
                     @{
@@ -273,17 +266,13 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" /> | 
+                <input class="btn btn-primary" type="submit" value="Update" /> |
                 <a class="btn btn-info" asp-action="Index">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-@*<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-*@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
