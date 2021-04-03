@@ -1,6 +1,8 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 .rotated {
     -ms-transform: rotate(270deg); /* IE 9 */
     -webkit-transform: rotate(270deg); /* Chrome, Safari, Opera */
@@ -98,9 +100,83 @@ body {
 }
 
 .navbar-nav .nav-link:hover {
-    color: #ccc !important;
+    color: #ccc;
 }
 
-.iconify {
-    color: red;
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
 }
+
+/* checks in Meetings */
+.bi-check-square-fill {
+    font-size: 1.5rem;
+    color: cornflowerblue;
+}
+
+
+label, th, .col-sm-2 {
+    color: #4682B4;
+    font-weight: bold;
+}
+
+h1 {
+    color: #4682B4;
+}
+/*
+    .form-check-input::before,
+    .form-check-input::after {
+        top: 1.8rem;
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+*/
+.form-check-input {
+    clear: left;
+}
+
+/*.form-switch.form-switch-sm {
+    margin-bottom: 0.5rem;*/ /* JUST FOR STYLING PURPOSE */
+/*}
+
+    .form-switch.form-switch-sm .form-check-input {
+        height: 1rem;
+        width: calc(1rem + 0.75rem);
+        border-radius: 2rem;
+    }*/
+
+.form-switch.form-switch-md {
+    margin-bottom: 1rem; /* JUST FOR STYLING PURPOSE */
+}
+
+    .form-switch.form-switch-md .form-check-input {
+        height: 1.5rem;
+        width: calc(2rem + 0.75rem);
+        border-radius: 3rem;
+    }
+
+/*.form-switch.form-switch-lg {
+    margin-bottom: 1.5rem;*/ /* JUST FOR STYLING PURPOSE */
+/*}
+
+    .form-switch.form-switch-lg .form-check-input {
+        height: 2rem;
+        width: calc(3rem + 0.75rem);
+        border-radius: 4rem;
+    }
+
+.form-switch.form-switch-xl {
+    margin-bottom: 2rem;*/ /* JUST FOR STYLING PURPOSE */
+/*}
+
+    .form-switch.form-switch-xl .form-check-input {
+        height: 2.5rem;
+        width: calc(4rem + 0.75rem);
+        border-radius: 5rem;
+    }*/
+
+/*.form-check-input {
+    font-size: 1.5rem;
+    color: cornflowerblue;
+    background-color: red;
+}
+*/

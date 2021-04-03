@@ -7,8 +7,9 @@
 <h1 class="text-center">Meetings</h1>
 <hr />
 <p>
-    <a class="btn btn-info" asp-action="Create">New Meeting</a>
+    <a class="btn btn-info" asp-action="Create">Add Meeting</a>
 </p>
+
 <table class="table table-sm table-responsive table-bordered table-hover">
     <thead>
         <tr style="height: 150px;">
@@ -54,83 +55,85 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr onclick="window.location='/Meetings/Details/@item.ID'">
-            <td>
-                @Html.DisplayFor(modelItem => item.MeetingDate)
-            </td>
-            <td class="text-center" style="width: 50px; height: 50px;">
-                @{ if (item.FastAndTestimonyMeeting)
-                    {
-                        @:<i class="bi bi-check-square-fill"></i>
-                    } }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Presiding.Salutation) @Html.DisplayFor(modelItem => item.Presiding.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ConductingLeader.Salutation) @Html.DisplayFor(modelItem => item.ConductingLeader.Name)
-            </td>
-            <td class="text-center" style="width: 50px; height: 50px;">
-                @{ if (item.Announcements != null && item.Announcements.Length > 3)
-                    {
-                        @:<i class="bi bi-check-square-fill"></i>
-                    } }
-            </td>
-            <td class="text-center" style="width: 50px; height: 50px;">
-                @{ if (item.Chorister != null)
-                    {
-                        @:<i class="bi bi-check-square-fill"></i>
-                    } }
-            </td>
-            <td class="text-center" style="width: 50px; height: 50px;">
-                @{ if (item.Organist != null)
-                    {
-                        @:<i class="bi bi-check-square-fill"></i>
-                    } }
-            </td>
-            <td class="text-center" style="width: 50px; height: 50px;">
-                @{ if (item.OpeningHymn != null)
-                    {
-                        @:<i class="bi bi-check-square-fill"></i>
-                    } }
-            </td>
-            <td class="text-center" style="width: 50px; height: 50px;">
-                @{ if (item.OpeningPrayerMember != null)
-                    {
-                        @:<i class="bi bi-check-square-fill"></i>
-                    } }
-            </td>
-            <td class="text-center" style="width: 50px; height: 50px;">
-                @{ if (item.OptionalRestHymnTitle != null)
-                    {
-                        @:<i class="bi bi-check-square-fill"></i>
-                    } }
-            </td>
-            <td class="text-center" style="width: 50px; height: 50px;">
-                @{ if (item.Speakers != null)
-                    {
-                        @item.Speakers.Count
-                    } }
-            </td>
-            <td class="text-center" style="width: 50px; height: 50px;">
-                @{ if (item.ClosingHymn != null)
-                    {
-                        @:<i class="bi bi-check-square-fill"></i>
-                    } }
-            </td>
-            <td class="text-center" style="width: 50px; height: 50px;">
-                @{ if (item.ClosingPrayerMember != null)
-                    {
-                        @:<i class="bi bi-check-square-fill"></i>
-                    } }
-            </td>
-            @*<td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>*@
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr onclick="window.location='/Meetings/Details/@item.ID'">
+                <td style="font-style: italic;">
+                    @Html.DisplayFor(modelItem => item.MeetingDate)
+                </td>
+                <td class="text-center" style="width: 50px; height: 50px;">
+                    @{ if (item.FastAndTestimonyMeeting)
+                        {
+                            <i class="bi bi-check-square-fill"></i>
+                        } 
+                       }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Presiding.Salutation) @Html.DisplayFor(modelItem => item.Presiding.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConductingLeader.Salutation) @Html.DisplayFor(modelItem => item.ConductingLeader.Name)
+                </td>
+                <td class="text-center" style="width: 50px; height: 50px;">
+                    @{ if (item.Announcements != null && item.Announcements.Length > 3)
+                        {
+                            @:<i class="bi bi-check-square-fill"></i>
+                        } }
+                </td>
+                <td class="text-center" style="width: 50px; height: 50px;">
+                    @{ if (item.Chorister != null)
+                        {
+                            @:<i class="bi bi-check-square-fill"></i>
+                        } }
+                </td>
+                <td class="text-center" style="width: 50px; height: 50px;">
+                    @{ if (item.Organist != null)
+                        {
+                            @:<i class="bi bi-check-square-fill"></i>
+                        } }
+                </td>
+                <td class="text-center" style="width: 50px; height: 50px;">
+                    @{ if (item.OpeningHymn != null)
+                        {
+                            @:<i class="bi bi-check-square-fill"></i>
+                        } }
+                </td>
+                <td class="text-center" style="width: 50px; height: 50px;">
+                    @{ if (item.OpeningPrayerMember != null)
+                        {
+                            @:<i class="bi bi-check-square-fill"></i>
+                        } }
+                </td>
+                <td class="text-center" style="width: 50px; height: 50px;">
+                    @{ if (item.OptionalRestHymnTitle != null)
+                        {
+                            @:<i class="bi bi-check-square-fill"></i>
+                        } }
+                </td>
+                <td class="text-center" style="width: 50px; height: 50px;">
+                    @{ if (item.Speakers != null)
+                        {
+                            @item.Speakers.Count
+                        } }
+                </td>
+                <td class="text-center" style="width: 50px; height: 50px;">
+                    @{ if (item.ClosingHymn != null)
+                        {
+                            @:<i class="bi bi-check-square-fill"></i>
+                        } }
+                </td>
+                <td class="text-center" style="width: 50px; height: 50px;">
+                    @{ if (item.ClosingPrayerMember != null)
+                        {
+                            @:<i class="bi bi-check-square-fill"></i>
+                        } }
+                </td>
+                @*<td>
+                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>*@
+            </tr>
+        }
     </tbody>
 </table>
