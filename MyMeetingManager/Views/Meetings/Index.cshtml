@@ -12,45 +12,45 @@
 
 <table class="table table-sm table-responsive table-bordered table-hover">
     <thead>
-        <tr style="height: 150px;">
+        <tr>
             <th>
                 @Html.DisplayNameFor(model => model.MeetingDate)
             </th>
-            <th class="rotated align-middle" style="width: 50px; height: 50px;">
-                Fast
+            <th class="rotated">
+                <div><span>Fast</span></div>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Presiding)
+                <div><span>@Html.DisplayNameFor(model => model.Presiding)</span></div>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ConductingLeader)
+                <div><span>@Html.DisplayNameFor(model => model.ConductingLeader)</span></div>
             </th>
-            <th class="rotated align-middle" style="width: 50px; height: 50px;">
-                Chorister
+            <th class="rotated">
+                <div><span>Chorister</span></div>
             </th>
-            <th class="rotated align-middle" style="width: 50px; height: 50px;">
-                Orangist
+            <th class="rotated">
+                <div><span>Orangist</span></div>
             </th>
-            <th class="rotated align-middle" style="width: 50px; height: 50px;">
-                Announcements
+            <th class="rotated">
+                <div><span>Announcements</span></div>
             </th>
-            <th class="rotated text-center align-middle" style="width: 50px; height: 50px;">
-                Opening Hymn
+            <th class="rotated text-center">
+                <div><span>Opening Hymn</span></div>
             </th>
-            <th class="rotated text-center align-middle" style="width: 50px; height: 50px;">
-                Opening Prayer
+            <th class="rotated text-center">
+                <div><span>Opening Prayer</span></div>
             </th>
-            <th class="rotated text-center align-middle" style="width: 50px; height: 50px;">
-                Rest Hymn
+            <th class="rotated text-center">
+                <div><span>Rest Hymn</span></div>
             </th>
-            <th class="rotated text-center align-middle" style="width: 50px; height: 50px;">
-                Speakers
+            <th class="rotated text-center">
+                <div><span>Speakers</span></div>
             </th>
-            <th class="rotated text-center align-middle" style="width: 50px; height: 50px;">
-                Closing Hymn
+            <th class="rotated text-center">
+                <div><span>Closing Hymn</span></div>
             </th>
-            <th class="rotated text-center align-middle" style="width: 50px; height: 50px;">
-                Closing Prayer
+            <th class="rotated text-center">
+                <div><span>Closing Prayer</span></div>
             </th>
         </tr>
     </thead>
@@ -61,7 +61,7 @@
                 <td style="font-style: italic;">
                     @Html.DisplayFor(modelItem => item.MeetingDate)
                 </td>
-                <td class="text-center" style="width: 50px; height: 50px;">
+                <td class="text-center">
                     @{ if (item.FastAndTestimonyMeeting)
                         {
                             <i class="bi bi-check-square-fill"></i>
@@ -74,55 +74,55 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ConductingLeader.Salutation) @Html.DisplayFor(modelItem => item.ConductingLeader.Name)
                 </td>
-                <td class="text-center" style="width: 50px; height: 50px;">
+                <td class="text-center">
                     @{ if (item.Announcements != null && item.Announcements.Length > 3)
                         {
                             @:<i class="bi bi-check-square-fill"></i>
                         } }
                 </td>
-                <td class="text-center" style="width: 50px; height: 50px;">
+                <td class="text-center">
                     @{ if (item.Chorister != null)
                         {
                             @:<i class="bi bi-check-square-fill"></i>
                         } }
                 </td>
-                <td class="text-center" style="width: 50px; height: 50px;">
+                <td class="text-center">
                     @{ if (item.Organist != null)
                         {
                             @:<i class="bi bi-check-square-fill"></i>
                         } }
                 </td>
-                <td class="text-center" style="width: 50px; height: 50px;">
+                <td class="text-center">
                     @{ if (item.OpeningHymn != null)
                         {
                             @:<i class="bi bi-check-square-fill"></i>
                         } }
                 </td>
-                <td class="text-center" style="width: 50px; height: 50px;">
+                <td class="text-center">
                     @{ if (item.OpeningPrayerMember != null)
                         {
                             @:<i class="bi bi-check-square-fill"></i>
                         } }
                 </td>
-                <td class="text-center" style="width: 50px; height: 50px;">
+                <td class="text-center">
                     @{ if (item.OptionalRestHymnTitle != null)
                         {
                             @:<i class="bi bi-check-square-fill"></i>
                         } }
                 </td>
-                <td class="text-center" style="width: 50px; height: 50px;">
+                <td class="text-center">
                     @{ if (item.Speakers != null)
                         {
                             @item.Speakers.Count
                         } }
                 </td>
-                <td class="text-center" style="width: 50px; height: 50px;">
+                <td class="text-center">
                     @{ if (item.ClosingHymn != null)
                         {
                             @:<i class="bi bi-check-square-fill"></i>
                         } }
                 </td>
-                <td class="text-center" style="width: 50px; height: 50px;">
+                <td class="text-center">
                     @{ if (item.ClosingPrayerMember != null)
                         {
                             @:<i class="bi bi-check-square-fill"></i>
