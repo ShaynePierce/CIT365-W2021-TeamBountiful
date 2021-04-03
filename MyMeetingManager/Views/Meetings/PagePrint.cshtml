@@ -19,108 +19,102 @@
     </h2>
 </div>
 
-    <hr />
-    <span class="program-element">@Html.DisplayNameFor(model => model.Presiding)</span>
-
-    <span class="program-participant">
-        @Html.DisplayFor(model => model.Presiding.Salutation) @Html.DisplayFor(model => model.Presiding.Name)
-    </span>
-    <br />
-
-    <span class="program-element">@Html.DisplayNameFor(model => model.ConductingLeader)</span>
-
-    <span class="program-participant">
-        @Html.DisplayFor(model => model.ConductingLeader.Salutation) @Html.DisplayFor(model => model.ConductingLeader.Name)
-    </span>
-
-    <br />
-    <span class="program-element">@Html.DisplayNameFor(model => model.Chorister)</span>
-
-    <span class="program-participant">
-        @Html.DisplayFor(model => model.Chorister.Salutation) @Html.DisplayFor(model => model.Chorister.Name)
-    </span>
-
-    <br />
-    <span class="program-element">@Html.DisplayNameFor(model => model.Organist)</span>
-
-    <span class="program-participant">
-        @Html.DisplayFor(model => model.Organist.Salutation) @Html.DisplayFor(model => model.Organist.Name)
-    </span>
-
-    <hr />
-
-    <span class="program-element">@Html.DisplayNameFor(model => model.OpeningHymn)</span>
-
-    <span class="program-participant"><em>@Html.DisplayFor(model => model.OpeningHymn.Title)</em> #@Html.DisplayFor(model => model.OpeningHymn.Number)</span>
-
-    <br />
-    <span class="program-element">@Html.DisplayNameFor(model => model.OpeningPrayerMember)</span>
-
-    <span class="program-participant">@Html.DisplayFor(model => model.OpeningPrayerMember.Salutation) @Html.DisplayFor(model => model.OpeningPrayerMember.Name)</span>
+<hr />
+<span class="program-element">@Html.DisplayNameFor(model => model.Presiding)</span>
+<span class="program-participant">
+    @Html.DisplayFor(model => model.Presiding.Salutation) @Html.DisplayFor(model => model.Presiding.Name)
+</span>
 <br />
 
-<div id="announcements" class="center">
-    @if (Model.Announcements != null)
-    {
-        <hr />
-        <strong>@Html.DisplayNameFor(model => model.Announcements)</strong>
-        <br />
+<span class="program-element">@Html.DisplayNameFor(model => model.ConductingLeader)</span>
+<span class="program-participant">
+    @Html.DisplayFor(model => model.ConductingLeader.Salutation) @Html.DisplayFor(model => model.ConductingLeader.Name)
+</span>
+ <br />
 
-        @Html.DisplayFor(model => model.Announcements)
-        <hr />
-    }
-</div>
+<span class="program-element">@Html.DisplayNameFor(model => model.Chorister)</span>
+<span class="program-participant">
+    @Html.DisplayFor(model => model.Chorister.Salutation) @Html.DisplayFor(model => model.Chorister.Name)
+</span>
+<br />
+
+<span class="program-element">@Html.DisplayNameFor(model => model.Organist)</span>
+<span class="program-participant">
+    @Html.DisplayFor(model => model.Organist.Salutation) @Html.DisplayFor(model => model.Organist.Name)
+</span>
+
+<hr />
+
+<span class="program-element">@Html.DisplayNameFor(model => model.OpeningHymn)</span>
+<span class="program-participant"><em>@Html.DisplayFor(model => model.OpeningHymn.Title)</em> #@Html.DisplayFor(model => model.OpeningHymn.Number)</span>
+<br />
+
+<span class="program-element">@Html.DisplayNameFor(model => model.OpeningPrayerMember)</span>
+<span class="program-participant">@Html.DisplayFor(model => model.OpeningPrayerMember.Salutation) @Html.DisplayFor(model => model.OpeningPrayerMember.Name)</span>
+<br />
+
+      <div id="announcements" class="center">
+          @if (Model.Announcements != null)
+          {
+              <hr />
+              <strong>@Html.DisplayNameFor(model => model.Announcements)</strong>
+              <br />
+
+              @Html.DisplayFor(model => model.Announcements)
+              <br /><hr />
+          }
+      </div>
 
 
-    <span class="program-element">@Html.DisplayNameFor(model => model.SacramentHymn)</span>
-    <span class="program-participant">
-        <em>@Html.DisplayFor(model => model.SacramentHymn.Title)</em> #@Html.DisplayFor(model => model.SacramentHymn.Number)
+<span class="program-element">@Html.DisplayNameFor(model => model.SacramentHymn)</span>
+<span class="program-participant">
+    <em>@Html.DisplayFor(model => model.SacramentHymn.Title)</em> #@Html.DisplayFor(model => model.SacramentHymn.Number)
+</span>
+
+<br /> <br />
+<span class="center"><h3>Administration of the Sacrament</h3></span>
+
+
+
+@if (Model.OptionalRestHymnTitle != null)
+{
+    <span class="center">
+        @Html.DisplayNameFor(model => model.OptionalRestHymnTitle)
+
+        <em>@Html.DisplayFor(model => model.OptionalRestHymnTitle)</em> <br />
+        <text> by </text>
+        @Html.DisplayFor(model => model.OptionalRestHymnMember.Salutation)<text> </text> @Html.DisplayFor(model => model.OptionalRestHymnMember.Name)
+        <br /> <br />
     </span>
+}
 
-    <br /> <br />
-    <span class="center"><h3>Administration of the Sacrament</h3></span>
-
-
-
-    @if (Model.OptionalRestHymnTitle != null)
+@if (Model.Speakers.Count > 0)
+{
+    @foreach (var item in Model.Speakers)
     {
-        <span class="center">
-            @Html.DisplayNameFor(model => model.OptionalRestHymnTitle)
-
-            <em>@Html.DisplayFor(model => model.OptionalRestHymnTitle)</em> <br />
-            <text> by </text>
-           @Html.DisplayFor(model => model.OptionalRestHymnMember.Salutation)<text> </text> @Html.DisplayFor(model => model.OptionalRestHymnMember.Name)
-            <br /> <br />
+        <span class="program-element"><text>Speaker </text></span>
+        <span class="program-participant">
+            @Html.DisplayFor(modelItem => item.Member.Salutation)<text> </text> @Html.DisplayFor(modelItem => item.Member.Name)
         </span>
-    }
-
-    @if (Model.Speakers.Count > 0)
-    {
-        @foreach (var item in Model.Speakers)
-        {
-            <span class="program-element"><text>Speaker </text></span>
-            <span class="program-participant">
-                @Html.DisplayFor(modelItem => item.Member.Salutation)<text> </text> @Html.DisplayFor(modelItem => item.Member.Name)
-            </span>
-            <br />
-        }
         <br />
     }
-    else if (Model.FastAndTestimonyMeeting == true)
-    {
-        <span class="center"><text><h3>Bearing of Testimonies</h3></text></span>
-        <br />
-    }
-
-    <span class="program-element">
-        @Html.DisplayNameFor(model => model.ClosingHymn)
-    </span>
-    <span class="program-participant">
-        <em>@Html.DisplayFor(model => model.ClosingHymn.Title)</em> #@Html.DisplayFor(model => model.ClosingHymn.Number)
-    </span>
     <br />
+}
+else if (Model.FastAndTestimonyMeeting == true)
+{
+    <span class="center"><text><h3>Bearing of Testimonies</h3></text></span>
+    <br />
+}
 
-    <span class="program-element">
-        @Html.DisplayNameFor(model => model.ClosingPrayerMember)
-    </span>
-    <span class="program-participant">@Html.DisplayFor(model => model.ClosingPrayerMember.Salutation) @Html.DisplayFor(model => model.ClosingPrayerMember.Name)</span>
+<span class="program-element">
+    @Html.DisplayNameFor(model => model.ClosingHymn)
+</span>
+<span class="program-participant">
+    <em>@Html.DisplayFor(model => model.ClosingHymn.Title)</em> #@Html.DisplayFor(model => model.ClosingHymn.Number)
+</span>
+<br />
+
+<span class="program-element">
+    @Html.DisplayNameFor(model => model.ClosingPrayerMember)
+</span>
+<span class="program-participant">@Html.DisplayFor(model => model.ClosingPrayerMember.Salutation) @Html.DisplayFor(model => model.ClosingPrayerMember.Name)</span>
