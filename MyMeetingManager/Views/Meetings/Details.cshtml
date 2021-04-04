@@ -28,43 +28,93 @@
             @Html.DisplayNameFor(model => model.Ward)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Ward.Name)
+            @if (Model.Ward != null)
+            {
+                Html.DisplayFor(model => model.Ward.Name);
+            }
+            else
+            {
+                <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign a Ward</a></text>
+            }
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Presiding)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Presiding.Salutation) @Html.DisplayFor(model => model.Presiding.Name)
+            @if (Model.Presiding != null)
+            {
+                @Html.DisplayFor(model => model.Presiding.Salutation) @Html.DisplayFor(model => model.Presiding.Name)
+            }
+            else
+            {
+                <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign a Presiding Leader</a></text>
+            }
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ConductingLeader)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ConductingLeader.Salutation) @Html.DisplayFor(model => model.ConductingLeader.Name)
+            @if (Model.ConductingLeader != null)
+            {
+                @Html.DisplayFor(model => model.ConductingLeader.Salutation) @Html.DisplayFor(model => model.ConductingLeader.Name)
+            }
+            else
+            {
+                <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign Conducting Leader</a></text>
+            }
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Chorister)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Chorister.Salutation) @Html.DisplayFor(model => model.Chorister.Name)
+            @if (Model.Chorister != null)
+            {
+                @Html.DisplayFor(model => model.Chorister.Salutation) @Html.DisplayFor(model => model.Chorister.Name)
+            }
+            else
+            {
+                <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign a Chorister</a></text>
+            }
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Organist)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Organist.Salutation) @Html.DisplayFor(model => model.Organist.Name)
+            @if (Model.Organist != null)
+            {
+                @Html.DisplayFor(model => model.Organist.Salutation) @Html.DisplayFor(model => model.Organist.Name)
+            }
+            else
+            {
+                <text><a href="../Edit">Assign an Organist</a></text>
+            }
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.OpeningHymn)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.OpeningHymn.Title) #@Html.DisplayFor(model => model.OpeningHymn.Number)
+            @if (Model.OpeningHymn != null)
+            {
+                <text>@Html.DisplayFor(model => model.OpeningHymn.Title) #@Html.DisplayFor(model => model.OpeningHymn.Number)</text>
+            }
+            else
+            {
+                <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign an Opening Hymn</a></text>
+            }
+
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.OpeningPrayerMember)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.OpeningPrayerMember.Salutation) @Html.DisplayFor(model => model.OpeningPrayerMember.Name)
+            @if (Model.OpeningPrayerMember != null)
+            {
+                @Html.DisplayFor(model => model.OpeningPrayerMember.Salutation) @Html.DisplayFor(model => model.OpeningPrayerMember.Name)
+            }
+            else
+            {
+                <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign a Member to give Opening Prayer</a></text>
+            }
         </dd>
         @if (Model.Announcements != null)
         {
@@ -75,11 +125,19 @@
                 @Html.DisplayFor(model => model.Announcements)
             </dd>
         }
+        
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.SacramentHymn)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SacramentHymn.Title) #@Html.DisplayFor(model => model.SacramentHymn.Number)
+            @if (Model.SacramentHymn != null)
+            {
+                <text>@Html.DisplayFor(model => model.SacramentHymn.Title) #@Html.DisplayFor(model => model.SacramentHymn.Number)</text>
+            }
+            else
+            {
+                <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign Sacrament Hymn</a></text>
+            }
         </dd>
         @if (Model.OptionalRestHymnTitle != null)
         {
@@ -90,12 +148,13 @@
                 @Html.DisplayFor(model => model.OptionalRestHymnTitle) by @Html.DisplayFor(model => model.OptionalRestHymnMember.Salutation) @Html.DisplayFor(model => model.OptionalRestHymnMember.Name)
             </dd>
         }
+        
         @if (Model.Speakers.Count > 0)
         {
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Speakers)
             </dt>
-            <dd class="col-sm-10">
+            <dd class="col-sm-10"> 
                 <table class="table">
                     <tr>
                         <th>Speaker Name</th>
@@ -119,17 +178,32 @@
                 </table>
             </dd>
         }
+       
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ClosingHymn)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ClosingHymn.Title) #@Html.DisplayFor(model => model.ClosingHymn.Number)
+            @if (Model.ClosingHymn != null)
+            {
+                <text>@Html.DisplayFor(model => model.ClosingHymn.Title)#@Html.DisplayFor(model => model.ClosingHymn.Number)</text>
+            }
+            else
+            {
+                <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign Closing Hymn</a></text>
+            }
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ClosingPrayerMember)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ClosingPrayerMember.Salutation) @Html.DisplayFor(model => model.ClosingPrayerMember.Name)
+            @if (Model.ClosingPrayerMember != null)
+            {
+                <text>@Html.DisplayFor(model => model.ClosingPrayerMember.Salutation) @Html.DisplayFor(model => model.ClosingPrayerMember.Name)</text>
+            }
+            else
+            {
+                <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign a Member to give Closing Prayer</a></text>
+            }
         </dd>
     </dl>
 </div>
