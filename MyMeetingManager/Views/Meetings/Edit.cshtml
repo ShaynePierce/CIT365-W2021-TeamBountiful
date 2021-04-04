@@ -8,270 +8,383 @@
 <hr />
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="container">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID" />
-            <div class="form-group">
-                <label asp-for="MeetingDate" class="control-label col-md-3"></label>
-                <div class="col-md-9">
-                    @Html.TextBoxFor(model => model.MeetingDate, "{0:yyyy-MM-dd}", htmlAttributes: new { @type = "date", @class = "form-control" })
-                    <span asp-validation-for="MeetingDate" class="text-danger"></span>
+
+            <fieldset class="form-group border p-3">
+                <legend class="w-auto px-2">General</legend>
+
+                <div class="form-group row">
+                    <label asp-for="MeetingDate" class="col-form-label col-sm-3"></label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.MeetingDate, "{0:yyyy-MM-dd}", htmlAttributes: new { @type = "date", @class = "form-control" })
+                        <span asp-validation-for="MeetingDate" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-3" for="FastMeeting">@Html.DisplayNameFor(model => Model.FastAndTestimonyMeeting)</label>
+                    <div class="col-sm-8">
+                        <div class="form-switch form-switch-md">
+                            <input class="form-check-input ml-0" name="FastMeeting" type="checkbox" id="FastMeeting" asp-for="FastAndTestimonyMeeting">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="WardSelect" class="col-form-label col-sm-3">Ward/Branch</label>
+                    <div class="col-sm-6">
+                        <select name="WardSelect" id="WardSelect" class="form-control select2-single" data-placeholder="--Select a Ward--">
+                            @{
+                                if (Model.Ward != null)
+                                {
+                                    @:<option selected="selected" value="@Model.Ward.ID">@Model.Ward.Name</option>
+                                }
+                                foreach (Ward w in ViewBag.WardList)
+                                {
+                                    @:<option value="@w.ID">@w.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="PresidingSelect" class="col-form-label col-sm-3">Presiding</label>
+                    <div class="col-sm-6">
+                        <select name="PresidingSelect" id="PresidingSelect" class="form-control select2-single" data-placeholder="--Select a Leader--">
+                            @{
+                                if (Model.Presiding != null)
+                                {
+                                    @:<option selected="selected" value="@Model.Presiding.ID">@Model.Presiding.Salutation @Model.Presiding.Name</option>
+                                }
+                                foreach (Member l in ViewBag.LeaderList)
+                                {
+                                    @:<option value="@l.ID">@l.Salutation @l.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="ConductingSelect" class="col-form-label col-sm-3">Conducting</label>
+                    <div class="col-sm-6">
+                        <select name="ConductingSelect" id="ConductingSelect" class="form-control select2-single" data-placeholder="--Select a Leader--">
+                            @{
+                                if (Model.ConductingLeader != null)
+                                {
+                                    @:<option selected="selected" value="@Model.ConductingLeader.ID">@Model.ConductingLeader.Salutation @Model.ConductingLeader.Name</option>
+                                }
+                                foreach (Member l in ViewBag.LeaderList)
+                                {
+                                    @:<option value="@l.ID">@l.Salutation @l.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
 
-            <div class="form-group form-check-inline form-switch form-switch-md">
-                <label class="form-check-label" for="FastMeeting">@Html.DisplayNameFor(model => Model.FastAndTestimonyMeeting)</label>
-                <input class="form-check-input" name="FastMeeting" type="checkbox" id="FastMeeting" asp-for="FastAndTestimonyMeeting">
-            </div>
+            <!-- Prayers -->
 
-            <div class="form-group">
-                <label for="WardSelect" class="control-label"></label>
-                <select name="WardSelect" id="WardSelect" class="form-control select2-single">
-                    @{
-                        if (Model.Ward == null)
-                        {
-                            @:<option selected="selected" value="">--Select a Ward--</option>
-                        }
-                        else
-                        {
-                            @:<option selected="selected" value="@Model.Ward.ID">@Model.Ward.Name</option>
-                        }
-                        foreach (Ward w in ViewBag.WardList)
-                        {
-                            @:<option value="@w.ID">@w.Name</option>
-                        }
+            <fieldset class="form-group border p-3">
+                <legend class="w-auto px-2">Prayers</legend>
+                <div class="form-group row">
+                    <label for="OpeningPrayerSelect" class="col-form-label col-sm-3">Opening Prayer</label>
+                    <div class="col-sm-6">
+                        <select name="OpeningPrayerSelect" id="OpeningPrayerSelect" class="form-control select2-single" data-placeholder="--Select a Member--">
+                            @{
+                                if (Model.OpeningPrayerMember != null)
+                                {
+                                    @:<option selected="selected" value="@Model.OpeningPrayerMember.ID">@Model.OpeningPrayerMember.Salutation @Model.OpeningPrayerMember.Name</option>
+                                }
+                                foreach (Member m in ViewBag.MemberList)
+                                {
+                                    @:<option value="@m.ID">@m.Salutation @m.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="ClosingPrayerSelect" class="col-form-label col-sm-3">Closing Prayer</label>
+                    <div class="col-sm-6">
+                        <select name="ClosingPrayerSelect" id="ClosingPrayerSelect" class="form-control select2-single" data-placeholder="--Select a Member for Closing Prayer--">
+                            <option value="">--Select a Member--</option>
+                            @{
+                                if (Model.ClosingPrayerMember != null)
+                                {
+                                    @:<option selected="selected" value="@Model.ClosingPrayerMember.ID">@Model.ClosingPrayerMember.Salutation @Model.ClosingPrayerMember.Name</option>
+                                }
+                                foreach (Member m in ViewBag.MemberList)
+                                {
+                                    @:<option value="@m.ID">@m.Salutation @m.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Music -->
+
+            <fieldset class="form-group border p-3">
+                <legend class="w-auto px-2">Music</legend>
+
+                <div class="form-group row">
+                    <label for="ChoristerSelect" class="col-form-label col-sm-3">Chorister</label>
+                    <div class="col-sm-6">
+                        <select name="ChoristerSelect" id="ChoristerSelect" class="form-control select2-single" data-placeholder="--Select a Chorister--">
+                            @{
+                                if (Model.Chorister != null)
+                                {
+                                    @:<option selected="selected" value="@Model.Chorister.ID">@Model.Chorister.Salutation @Model.Chorister.Name</option>
+                                }
+                                foreach (Member m in ViewBag.MemberList)
+                                {
+                                    @:<option value="@m.ID">@m.Salutation @m.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="OrganistSelect" class="col-form-label col-sm-3">Organist</label>
+                    <div class="col-sm-6">
+                        <select name="OrganistSelect" id="OrganistSelect" class="form-control select2-single" data-placeholder="--Select an Organist--">
+                            @{
+                                if (Model.Organist != null)
+                                {
+                                    @:<option selected="selected" value="@Model.Organist.ID">@Model.Organist.Salutation @Model.Organist.Name</option>
+                                }
+                                foreach (Member m in ViewBag.MemberList)
+                                {
+                                    @:<option value="@m.ID">@m.Salutation @m.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="OpeningHymnSelect" class="col-form-label col-sm-3">Opening Hymn</label>
+                    <div class="col-sm-6">
+                        <select name="OpeningHymnSelect" id="OpeningHymnSelect" class="form-control select2-hymns" data-placeholder="--Select an Opening Hymn--">
+                            @{
+                                if (Model.OpeningHymn != null)
+                                {
+                                    @:<option selected="selected" value="@Model.OpeningHymn.ID">@Model.OpeningHymn.Title #@Model.OpeningHymn.Number</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="SacramentHymnSelect" class="col-form-label col-sm-3">Sacrament Hymn</label>
+                    <div class="col-sm-6">
+                        <select name="SacramentHymnSelect" id="SacramentHymnSelect" class="form-control select2-hymns" data-placeholder="--Select a Sacrament Hymn--">
+                            @{
+                                if (Model.SacramentHymn != null)
+                                {
+                                    @:<option selected="selected" value="@Model.SacramentHymn.ID">@Model.SacramentHymn.Title #@Model.SacramentHymn.Number</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="RestHymnSelect" class="col-form-label col-sm-3">Rest Hymn</label>
+                    <div class="col-sm-6">
+                        <select name="RestHymnSelect" id="RestHymnSelect" class="form-control select2-single-tags" data-tags="true" data-placeholder="--Select a Rest Hymn--">
+                            @{
+                                if (Model.SacramentHymn != null)
+                                {
+                                    @:<option selected="selected" value="-1">@Model.OptionalRestHymnTitle</option>
+                                }
+                                foreach (Hymn h in ViewBag.HymnList)
+                                {
+                                    @:<option value="@h.ID">@h.Title #@h.Number</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="RestHymnMemberSelect" class="col-form-label col-sm-3">Rest Hymn Performer</label>
+                    <div class="col-sm-6">
+                        <select name="RestHymnMemberSelect" id="RestHymnMemberSelect" class="form-control select2-single" data-placeholder="--Select a Rest Hymn Performer--">
+                            @{
+                                if (Model.OptionalRestHymnMember != null)
+                                {
+                                    @:<option selected="selected" value="@Model.OptionalRestHymnMember.ID">@Model.OptionalRestHymnMember.Salutation @Model.OptionalRestHymnMember.Name</option>
+                                }
+                                foreach (Member m in ViewBag.MemberList)
+                                {
+                                    @:<option value="@m.ID">@m.Salutation @m.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="ClosingHymnSelect" class="col-form-label col-sm-3">Closing Hymn</label>
+                    <div class="col-sm-6">
+                        <select name="ClosingHymnSelect" id="ClosingHymnSelect" class="form-control select2-hymns" data-placeholder="--Select a Closing Hymn--">
+                            @{
+                                if (Model.ClosingHymn != null)
+                                {
+                                    @:<option selected="selected" value="@Model.ClosingHymn.ID">@Model.ClosingHymn.Title #@Model.ClosingHymn.Number</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Speakers -->
+
+            <fieldset class="form-group border p-3">
+                <legend class="w-auto px-2">Speakers</legend>
+
+                <div class="row">
+                    @if (Model.Speakers.Count > 0)
+                    {
+                        <div class="col-sm-12">
+                            <table class="table" id="speakers-table">
+                                <tr>
+                                    <th>Speaker Name</th>
+                                    <th>Topic</th>
+                                    <th style="width: 90px;">Minutes</th>
+                                    <th style="width: 70px;"></th>
+                                </tr>
+                                @{
+                                    foreach (var speaker in Model.Speakers)
+                                    {
+                                        <tr>
+                                            <td class="name">
+                                                <input type="hidden" asp-for="@speaker.ID" />
+                                                <select name="MemberSelect" id="MemberSelect-@speaker.ID" class="form-control select2-members" data-placeholder="--Select an Member--">
+                                                    @{
+                                                        if (!(speaker.Member == null))
+                                                        {
+                                                            @:<option selected="selected" value="@speaker.Member.ID">@speaker.Member.Name</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </td>
+                                            <td class="topic">
+                                                <input asp-for="@speaker.Topic" id="Topic-@speaker.ID" class="form-control" />
+                                                <span asp-validation-for="@speaker.Topic" class="text-danger"></span>
+                                            </td>
+                                            <td class="minutes">
+                                                <input asp-for="@speaker.Minutes" id="Minutes-@speaker.ID" class="form-control" />
+                                                <span asp-validation-for="@speaker.Minutes" class="text-danger"></span>
+                                            </td>
+                                            <td><button class="btn btn-outline-danger"><i class="bi bi-x"></i></button></td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                            <button class="btn btn-success"><i class="bi bi-plus"></i></button>
+                        </div>
                     }
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="PresidingSelect" class="control-label">Presiding</label>
-                <select name="PresidingSelect" id="PresidingSelect" class="form-control select2-single">
-                    @{
-                        if (Model.Presiding == null)
-                        {
-                            @:<option selected="selected" value="">--Select a Leader--</option>
-                        }
-                        else
-                        {
-                            @:<option selected="selected" value="@Model.Presiding.ID">@Model.Presiding.Salutation @Model.Presiding.Name</option>
-                        }
-                        foreach (Member l in ViewBag.LeaderList)
-                        {
-                            @:<option value="@l.ID">@l.Salutation @l.Name</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="ConductingSelect" class="control-label">Conducting</label>
-                <select name="ConductingSelect" id="ConductingSelect" class="form-control select2-single">
-                    @{
-                        if (Model.ConductingLeader == null)
-                        {
-                            @:<option selected="selected" value="">--Select a Leader--</option>
-                        }
-                        else
-                        {
-                            @:<option selected="selected" value="@Model.ConductingLeader.ID">@Model.ConductingLeader.Salutation @Model.ConductingLeader.Name</option>
-                        }
-                        foreach (Member l in ViewBag.LeaderList)
-                        {
-                            @:<option value="@l.ID">@l.Salutation @l.Name</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="ChoristerSelect" class="control-label">Chorister</label>
-                <select name="ChoristerSelect" id="ChoristerSelect" class="form-control select2-single">
-                    @{
-                        if (Model.Chorister == null)
-                        {
-                            @:<option selected="selected" value="">--Select a Chorister--</option>
-                        }
-                        else
-                        {
-                            @:<option selected="selected" value="@Model.Chorister.ID">@Model.Chorister.Salutation @Model.Chorister.Name</option>
-                        }
-                        foreach (Member m in ViewBag.MemberList)
-                        {
-                            @:<option value="@m.ID">@m.Salutation @m.Name</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="OrganistSelect" class="control-label">Organist</label>
-                <select name="OrganistSelect" id="OrganistSelect" class="form-control select2-single">
-                    @{
-                        if (Model.Organist == null)
-                        {
-                            @:<option selected="selected" value="">--Select an Organist--</option>
-                        }
-                        else
-                        {
-                            @:<option selected="selected" value="@Model.Organist.ID">@Model.Organist.Salutation @Model.Organist.Name</option>
-                        }
-                        foreach (Member m in ViewBag.MemberList)
-                        {
-                            @:<option value="@m.ID">@m.Salutation @m.Name</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="OpeningHymnSelect" class="control-label">Opening Hymn</label>
-                <select name="OpeningHymnSelect" id="OpeningHymnSelect" class="form-control select2-single">
-                    @{
-                        if (Model.OpeningHymn == null)
-                        {
-                            @:<option selected="selected" value="">--Select an Opening Hymn--</option>
-                        }
-                        else
-                        {
-                            @:<option selected="selected" value="@Model.OpeningHymn.ID">@Model.OpeningHymn.Title #@Model.OpeningHymn.Number</option>
-                        }
-                        foreach (Hymn h in ViewBag.HymnList)
-                        {
-                            @:<option value="@h.ID">@h.Title #@h.Number</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="OpeningPrayerSelect" class="control-label">Opening Prayer</label>
-                <select name="OpeningPrayerSelect" id="OpeningPrayerSelect" class="form-control select2-single">
-                    @{
-                        if (Model.OpeningPrayerMember == null)
-                        {
-                            @:<option selected="selected" value="">--Select a Member--</option>
-                        }
-                        else
-                        {
-                            @:<option selected="selected" value="@Model.OpeningPrayerMember.ID">@Model.OpeningPrayerMember.Salutation @Model.OpeningPrayerMember.Name</option>
-                        }
-                        foreach (Member m in ViewBag.MemberList)
-                        {
-                            @:<option value="@m.ID">@m.Salutation @m.Name</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Announcements" class="control-label"></label>
-                <input asp-for="Announcements" class="form-control" />
-                <span asp-validation-for="Announcements" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label for="SacramentHymnSelect" class="control-label">Sacrament Hymn</label>
-                <select name="SacramentHymnSelect" id="SacramentHymnSelect" class="form-control select2-single">
-                    @{
-                        if (Model.SacramentHymn == null)
-                        {
-                            @:<option selected="selected" value="">--Select a Sacrament Hymn--</option>
-                        }
-                        else
-                        {
-                            @:<option selected="selected" value="@Model.SacramentHymn.ID">@Model.SacramentHymn.Title #@Model.SacramentHymn.Number</option>
-                        }
-                        foreach (Hymn h in ViewBag.HymnList)
-                        {
-                            @:<option value="@h.ID">@h.Title #@h.Number</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="RestHymnSelect" class="control-label">Rest Hymn</label>
-                <select name="RestHymnSelect" id="RestHymnSelect" class="form-control select2-single-tags">
-                    @{
-                        if (Model.SacramentHymn == null)
-                        {
-                            @:<option selected="selected" value="">--Select a Rest Hymn--</option>
-                        }
-                        else
-                        {
-                            @:<option selected="selected" value="-1">@Model.OptionalRestHymnTitle</option>
-                        }
-                        foreach (Hymn h in ViewBag.HymnList)
-                        {
-                            @:<option value="@h.ID">@h.Title #@h.Number</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="RestHymnMemberSelect" class="control-label">Rest Hymn Performer</label>
-                <select name="RestHymnMemberSelect" id="RestHymnMemberSelect" class="form-control select2-single">
-                    @{
-                        if (Model.OptionalRestHymnMember == null)
-                        {
-                            @:<option selected="selected" value="">--Select a Rest Hymn Performer--</option>
-                        }
-                        else
-                        {
-                            @:<option selected="selected" value="@Model.OptionalRestHymnMember.ID">@Model.OptionalRestHymnMember.Salutation @Model.OptionalRestHymnMember.Name</option>
-                        }
-                        foreach (Member m in ViewBag.MemberList)
-                        {
-                            @:<option value="@m.ID">@m.Salutation @m.Name</option>
-                        }
-                    }
-                </select>
-            </div>
-            @*<div class="form-group">
-            <label asp-for="OptionalRestHymnTitle" class="control-label"></label>
-            <input asp-for="OptionalRestHymnTitle" class="form-control" />
-            <span asp-validation-for="OptionalRestHymnTitle" class="text-danger"></span>
-        </div>*@
-            <div class="form-group">
-                <label for="ClosingHymnSelect" class="control-label">Closing Hymn</label>
-                <select name="ClosingHymnSelect" id="ClosingHymnSelect" class="form-control select2-single">
-                    <option value="">--Select a Closing Hymn--</option>
-                    @{
-                        if (Model.ClosingHymn == null)
-                        {
-                            @:<option selected="selected" value="">--Select a Closing Hymn--</option>
-                        }
-                        else
-                        {
-                            @:<option selected="selected" value="@Model.ClosingHymn.ID">@Model.ClosingHymn.Title #@Model.ClosingHymn.Number</option>
-                        }
-                        foreach (Hymn h in ViewBag.HymnList)
-                        {
-                            @:<option value="@h.ID">@h.Title #@h.Number</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="ClosingPrayerSelect" class="control-label">Closing Prayer</label>
-                <select name="ClosingPrayerSelect" id="ClosingPrayerSelect" class="form-control select2-single">
-                    <option value="">--Select a Member--</option>
-                    @{
-                        if (Model.ClosingPrayerMember == null)
-                        {
-                            @:<option selected="selected" value="">--Select a Member for Closing Prayer--</option>
-                        }
-                        else
-                        {
-                            @:<option selected="selected" value="@Model.ClosingPrayerMember.ID">@Model.ClosingPrayerMember.Salutation @Model.ClosingPrayerMember.Name</option>
-                        }
-                        foreach (Member m in ViewBag.MemberList)
-                        {
-                            @:<option value="@m.ID">@m.Salutation @m.Name</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="form-group">
+                </div>
+            </fieldset>
+
+            <!-- Speakers -->
+
+            <fieldset class="form-group border p-3">
+                <legend class="w-auto px-2">Other</legend>
+                <div class="form-group row">
+                    <label asp-for="Announcements" class="col-form-label col-sm-3"></label>
+                    <div class="col-sm-6">
+                        <input asp-for="Announcements" class="form-control" />
+                        <span asp-validation-for="Announcements" class="text-danger"></span>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="form-group row">
                 <input class="btn btn-primary" type="submit" value="Update" /> |
                 <a class="btn btn-info" asp-action="Index">Back to List</a>
             </div>
         </form>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $(".select2-hymns").select2({
+            allowClear: true,
+            theme: 'bootstrap4',
+            openOnEnter: false,
+            ajax: {
+                url: '/Hymns/GetList',
+                dataType: 'json',
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        type: 'public'
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                text: `${item.title} #${item.number}`,
+                                id: item.id
+                            }
+                        })
+                    }
+                }
+            },
+            error: function () {
+                alert('Failed');
+            },
+            formatResult: function (data) {
+                return "<div class='select2-user-result'>" + data.client + "</div>";
+            },
+            formatSelection: function (data) {
+                return data.client;
+            },
+
+        });
+
+        $(".select2-members").select2({
+            allowClear: true,
+            theme: 'bootstrap4',
+            openOnEnter: false,
+            ajax: {
+                url: '/Members/GetList',
+                dataType: 'json',
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        type: 'public'
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                text: item.name,
+                                id: item.id
+                            }
+                        })
+                    }
+                }
+            },
+            error: function () {
+                alert('Failed');
+            },
+            formatResult: function (data) {
+                return "<div class='select2-user-result'>" + data.client + "</div>";
+            },
+            formatSelection: function (data) {
+                return data.client;
+            },
+
+        });
+    });
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

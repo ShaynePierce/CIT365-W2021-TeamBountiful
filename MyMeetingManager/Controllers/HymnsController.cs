@@ -149,5 +149,28 @@ namespace MyMeetingManager.Controllers
         {
             return _context.Hymns.Any(e => e.ID == id);
         }
+
+        // GET: Hymns/GetList/{string}
+        public async Task<IActionResult> GetList(string search)
+        {
+            var hymns = from s in _context.Hymns
+                           select s;
+
+            //use search item
+            if (!(string.IsNullOrEmpty(search) || string.IsNullOrWhiteSpace(search)))
+            {
+                // Check if input is number only
+                if (search.All(char.IsDigit))
+                {
+                    hymns = hymns.Where(s => s.Title.Contains(search) || s.Number.Equals(int.Parse(search)));
+                }
+                else
+                {
+                    hymns = hymns.Where(s => s.Title.Contains(search));
+                }
+            }
+
+            return Json(await hymns.AsNoTracking().ToListAsync());
+        }
     }
 }

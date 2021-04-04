@@ -220,7 +220,8 @@ namespace MyMeetingManager.Controllers
             ViewBag.HymnList = hymns;
             var wards = _context.Wards.OrderBy(w => w.Name).ToList();
             ViewBag.WardList = wards;
-
+            var speakers = _context.Speakers.OrderBy(w => w.Member).ToList();
+            ViewBag.SpeakersList = speakers;
 
             var meeting = await _context.Meetings.FindAsync(id);
             if (meeting == null)
@@ -269,6 +270,16 @@ namespace MyMeetingManager.Controllers
                 {
                     _context.Update(meeting);
                     await _context.SaveChangesAsync();
+
+                    //Remove or update Speakers
+                    //Add Speakers
+                    //foreach
+                        //Speakers
+                        //speaker.ID;
+                        //speaker.Member
+                        //speaker.Topic;
+                        //speaker.Minutes
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {

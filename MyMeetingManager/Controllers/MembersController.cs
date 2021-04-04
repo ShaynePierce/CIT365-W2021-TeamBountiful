@@ -158,5 +158,20 @@ namespace MyMeetingManager.Controllers
         {
             return _context.Members.Any(e => e.ID == id);
         }
+
+        // GET: Members/GetList/search={string}
+        public async Task<IActionResult> GetList(string search)
+        {
+            var member = from s in _context.Members
+                        select s;
+
+            //use search item
+            if (!(string.IsNullOrEmpty(search) || string.IsNullOrWhiteSpace(search)))
+            {
+                member = member.Where(s => s.Name.Contains(search));
+            }
+
+            return Json(await member.AsNoTracking().ToListAsync());
+        }
     }
 }
