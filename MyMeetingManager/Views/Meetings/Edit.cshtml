@@ -2,7 +2,11 @@
 
 @{
     ViewData["Title"] = "Update Meeting";
+
+    int row = 0; // Needed for rows of speakers
 }
+
+
 
 <h1 class="text-center">Update Meeting</h1>
 <hr />
@@ -246,47 +250,46 @@
                 <legend class="w-auto px-2">Speakers</legend>
 
                 <div class="row">
-                    @if (Model.Speakers.Count > 0)
-                    {
-                        <div class="col-sm-12">
-                            <table class="table" id="speakers-table">
-                                <tr>
-                                    <th>Speaker Name</th>
-                                    <th>Topic</th>
-                                    <th style="width: 90px;">Minutes</th>
-                                    <th style="width: 70px;"></th>
-                                </tr>
-                                @{
-                                    foreach (var speaker in Model.Speakers)
-                                    {
-                                        <tr>
-                                            <td class="name">
-                                                <input type="hidden" asp-for="@speaker.ID" />
-                                                <select name="MemberSelect" id="MemberSelect-@speaker.ID" class="form-control select2-members" data-placeholder="--Select an Member--">
-                                                    @{
-                                                        if (!(speaker.Member == null))
-                                                        {
-                                                            @:<option selected="selected" value="@speaker.Member.ID">@speaker.Member.Name</option>
-                                                        }
+                    <div class="col-sm-12">
+                        <table class="table" id="speakers-table">
+                            <tr>
+                                <th>Speaker Name</th>
+                                <th>Topic</th>
+                                <th style="width: 90px;">Minutes</th>
+                                <th style="width: 70px;"></th>
+                            </tr>
+                            @if (Model.Speakers != null && Model.Speakers.Count > 0)
+                            {
+                                foreach (var speaker in Model.Speakers)
+                                {
+                                    <tr id="speackerRow-@row">
+                                        <td class="name">
+                                            <input type="hidden" asp-for="@speaker.ID" name="speaker[@row][ID]" id="speakerID-@row" />
+                                            <select name="speaker[@row][Member]" id="speakerMember-@row" class="form-control select2-members" data-placeholder="--Select an Member--">
+                                                @{
+                                                    if (!(speaker.Member == null))
+                                                    {
+                                                        @:<option selected="selected" value="@speaker.Member.ID">@speaker.Member.Name</option>
                                                     }
-                                                </select>
-                                            </td>
-                                            <td class="topic">
-                                                <input asp-for="@speaker.Topic" id="Topic-@speaker.ID" class="form-control" />
-                                                <span asp-validation-for="@speaker.Topic" class="text-danger"></span>
-                                            </td>
-                                            <td class="minutes">
-                                                <input asp-for="@speaker.Minutes" id="Minutes-@speaker.ID" class="form-control" />
-                                                <span asp-validation-for="@speaker.Minutes" class="text-danger"></span>
-                                            </td>
-                                            <td><button class="btn btn-outline-danger"><i class="bi bi-x"></i></button></td>
-                                        </tr>
-                                    }
+                                                }
+                                            </select>
+                                        </td>
+                                        <td class="topic">
+                                            <input asp-for="@speaker.Topic" name="speaker[@row][Topic]" id="speakerTopic-@row" class="form-control" />
+                                            <span asp-validation-for="@speaker.Topic" for="speakerTopic-@row" class="text-danger"></span>
+                                        </td>
+                                        <td class="minutes">
+                                            <input asp-for="@speaker.Minutes" name="speaker[@row][Topic]" id="speakerMinutes-@row" class="form-control" />
+                                            <span asp-validation-for="@speaker.Minutes" for="speakerMinutes-@row" class="text-danger"></span>
+                                        </td>
+                                        <td><button type="button" onclick="removeCheck('#speackerRow-@row');" title="Remove" class="btn btn-outline-danger"><i class="bi bi-x"></i></button></td>
+                                    </tr>
+                                    row++;
                                 }
-                            </table>
-                            <button class="btn btn-success"><i class="bi bi-plus"></i></button>
-                        </div>
-                    }
+                            }
+                        </table>
+                        <button type="button" onclick="addSpeaker();" title="Add Speaker" class="btn btn-success"><i class="bi bi-plus"></i></button>
+                    </div>
                 </div>
             </fieldset>
 
@@ -303,7 +306,7 @@
                 </div>
             </fieldset>
 
-            <div class="form-group row">
+            <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="Update" /> |
                 <a class="btn btn-info" asp-action="Index">Back to List</a>
             </div>
@@ -312,78 +315,111 @@
 </div>
 <script>
     $(document).ready(function () {
-        $(".select2-hymns").select2({
-            allowClear: true,
-            theme: 'bootstrap4',
-            openOnEnter: false,
-            ajax: {
-                url: '/Hymns/GetList',
-                dataType: 'json',
-                data: function (params) {
-                    return {
-                        search: params.term,
-                        type: 'public'
-                    };
-                },
-                processResults: function (data) {
-                    return {
-                        results: $.map(data, function (item) {
-                            return {
-                                text: `${item.title} #${item.number}`,
-                                id: item.id
-                            }
-                        })
-                    }
-                }
-            },
-            error: function () {
-                alert('Failed');
-            },
-            formatResult: function (data) {
-                return "<div class='select2-user-result'>" + data.client + "</div>";
-            },
-            formatSelection: function (data) {
-                return data.client;
-            },
-
-        });
-
-        $(".select2-members").select2({
-            allowClear: true,
-            theme: 'bootstrap4',
-            openOnEnter: false,
-            ajax: {
-                url: '/Members/GetList',
-                dataType: 'json',
-                data: function (params) {
-                    return {
-                        search: params.term,
-                        type: 'public'
-                    };
-                },
-                processResults: function (data) {
-                    return {
-                        results: $.map(data, function (item) {
-                            return {
-                                text: item.name,
-                                id: item.id
-                            }
-                        })
-                    }
-                }
-            },
-            error: function () {
-                alert('Failed');
-            },
-            formatResult: function (data) {
-                return "<div class='select2-user-result'>" + data.client + "</div>";
-            },
-            formatSelection: function (data) {
-                return data.client;
-            },
-
-        });
+        $(".select2-members").select2(memberSettings);
+        $(".select2-members").select2(hymnSettings);
     });
+
+    var hymnSettings = {
+        dropdownAutoWidth: false,
+        allowClear: true,
+        theme: 'bootstrap4',
+        openOnEnter: false,
+        ajax: {
+            url: '/Hymns/GetList',
+            dataType: 'json',
+            data: function (params) {
+                return {
+                    search: params.term,
+                    type: 'public'
+                };
+            },
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: `${item.title} #${item.number}`,
+                            id: item.id
+                        }
+                    })
+                }
+            }
+        },
+        error: function () {
+            alert('Failed');
+        },
+        formatResult: function (data) {
+            return "<div class='select2-user-result'>" + data.client + "</div>";
+        },
+        formatSelection: function (data) {
+            return data.client;
+        }
+    };
+
+    var memberSettings = {
+        dropdownAutoWidth: false,
+        allowClear: true,
+        theme: 'bootstrap4',
+        openOnEnter: false,
+        ajax: {
+            url: '/Members/GetList',
+            dataType: 'json',
+            data: function (params) {
+                return {
+                    search: params.term,
+                    type: 'public'
+                };
+            },
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.name,
+                            id: item.id
+                        }
+                    })
+                }
+            }
+        },
+        error: function () {
+            alert('Failed');
+        },
+        formatResult: function (data) {
+            return "<div class='select2-user-result'>" + data.client + "</div>";
+        },
+        formatSelection: function (data) {
+            return data.client;
+        }
+    };
+
+    var speacker_row = @row;
+
+    function addSpeaker() {
+        html = `<tr id="speackerRow-${speacker_row}">';
+        <td class="name">
+            <input type="hidden" id="speaker[${speacker_row}][ID]" name="speakerID-${speacker_row}" value="0">
+            <select name="speaker[${speacker_row}][Member]" id="speakerMember-${speacker_row}" class="form-control select2-members" data-placeholder="--Select an Member--"></select>
+        </td>
+        <td class="topic">
+            <input name="speaker[${speacker_row}][Topic]" id="speakerTopic-${speacker_row}" class="form-control valid" type="text">
+            <span class="text-danger field-validation-valid" data-valmsg-for="speakerTopic-${speacker_row}" data-valmsg-replace="true"></span>
+        </td>
+        <td class="minutes">
+            <input name="speaker[${speacker_row}][Minutes]" id="speakerMinutes-${speacker_row}" class="form-control valid" type="number" data-val-range="The field Minutes must be between 3 and 15." data-val-range-max="15" data-val-range-min="3" data-val-required="The Minutes field is required.">
+            <span class="text-danger field-validation-valid" data-valmsg-for="speakerMinutes-${speacker_row}" data-valmsg-replace="true"></span>
+        </td>
+        <td><button type="button" onclick="removeCheck('#speackerRow-${speacker_row}');" title="Remove" class="btn btn-outline-danger"><i class="bi bi-x"></i></button></td>
+        </tr>`;
+
+        $('#speakers-table').append(html);
+        $(".select2-members").select2(memberSettings);
+        speacker_row++;
+    }
+
+    function removeCheck(result) {
+        if (confirm('Remove cannot be undone! Are you sure you want to do this?') == true) {
+            $(result).remove();
+        }
+    }
 </script>
 
 @section Scripts {
