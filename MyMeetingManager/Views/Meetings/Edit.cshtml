@@ -207,7 +207,7 @@
                                 }
                                 foreach (Hymn h in ViewBag.HymnList)
                                 {
-                                    @:<option value="@h.ID">@h.Title #@h.Number</option>
+                                    @:<option value="@h.Title #@h.Number">@h.Title #@h.Number</option>
                                 }
                             }
                         </select>
@@ -317,7 +317,6 @@
 </div>
 <script>
     var hymnSettings = {
-        dropdownAutoWidth: false,
         allowClear: true,
         theme: 'bootstrap4',
         openOnEnter: false,
@@ -353,7 +352,7 @@
     };
 
     var memberSettings = {
-        dropdownAutoWidth: false,
+        width: 'style',
         allowClear: true,
         theme: 'bootstrap4',
         openOnEnter: false,
