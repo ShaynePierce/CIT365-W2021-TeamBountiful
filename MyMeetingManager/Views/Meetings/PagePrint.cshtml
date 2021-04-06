@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Print Sacrament Meeting Program";
     Layout = "~/Views/Shared/_PrintLayout.cshtml";
-    
+
 }
 
 <div id="program-header" class="center">
@@ -19,7 +19,7 @@
     </h2>
 </div>
 
-<hr />
+<div class="center"><hr /></div>
 <span class="program-element">@Html.DisplayNameFor(model => model.Presiding)</span>
 <span class="program-participant">
     @Html.DisplayFor(model => model.Presiding.Salutation) @Html.DisplayFor(model => model.Presiding.Name)
@@ -30,7 +30,7 @@
 <span class="program-participant">
     @Html.DisplayFor(model => model.ConductingLeader.Salutation) @Html.DisplayFor(model => model.ConductingLeader.Name)
 </span>
- <br />
+<br />
 
 <span class="program-element">@Html.DisplayNameFor(model => model.Chorister)</span>
 <span class="program-participant">
@@ -43,7 +43,7 @@
     @Html.DisplayFor(model => model.Organist.Salutation) @Html.DisplayFor(model => model.Organist.Name)
 </span>
 
-<hr />
+<div class="center"><hr /></div>
 
 <span class="program-element">@Html.DisplayNameFor(model => model.OpeningHymn)</span>
 <span class="program-participant"><em>@Html.DisplayFor(model => model.OpeningHymn.Title)</em> #@Html.DisplayFor(model => model.OpeningHymn.Number)</span>
@@ -53,17 +53,17 @@
 <span class="program-participant">@Html.DisplayFor(model => model.OpeningPrayerMember.Salutation) @Html.DisplayFor(model => model.OpeningPrayerMember.Name)</span>
 <br />
 
-      <div id="announcements" class="center">
-          @if (Model.Announcements != null)
-          {
-              <hr />
-              <strong>@Html.DisplayNameFor(model => model.Announcements)</strong>
-              <br />
+<div id="announcements" class="center">
+    @if (Model.Announcements != null)
+    {
+        <hr />
+        <strong>@Html.DisplayNameFor(model => model.Announcements)</strong>
+        <br />
 
-              @Html.DisplayFor(model => model.Announcements)
-              <br /><hr />
-          }
-      </div>
+        @Html.DisplayFor(model => model.Announcements)
+        <br /><hr />
+    }
+</div>
 
 
 <span class="program-element">@Html.DisplayNameFor(model => model.SacramentHymn)</span>
@@ -71,30 +71,37 @@
     <em>@Html.DisplayFor(model => model.SacramentHymn.Title)</em> #@Html.DisplayFor(model => model.SacramentHymn.Number)
 </span>
 
-<br /> <br />
+<br />
+<br />
 <div class="center"><h3>Administration of the Sacrament</h3></div>
 
 
 
 @if (Model.OptionalRestHymnTitle != null)
 {
-    <span class="center">
-        @Html.DisplayNameFor(model => model.OptionalRestHymnTitle)
 
+    <span class="program-element">
+        @Html.DisplayNameFor(model => model.OptionalRestHymnTitle)
+    </span>
+    <span class="program-participant">
         <em>@Html.DisplayFor(model => model.OptionalRestHymnTitle)</em> <br />
         <text> by </text>
         @Html.DisplayFor(model => model.OptionalRestHymnMember.Salutation)<text> </text> @Html.DisplayFor(model => model.OptionalRestHymnMember.Name)
-        <br /> <br />
     </span>
+    <br />
 }
 
 @if (Model.Speakers.Count > 0)
 {
+    <span><br /></span>
     @foreach (var item in Model.Speakers)
     {
         <span class="program-element"><text>Speaker </text></span>
         <span class="program-participant">
             @Html.DisplayFor(modelItem => item.Member.Salutation)<text> </text> @Html.DisplayFor(modelItem => item.Member.Name)
+            <br />
+            <em>@Html.DisplayFor(modelItem => item.Topic)</em>
+            <div><br /></div>
         </span>
         <br />
     }
@@ -105,7 +112,7 @@ else if (Model.FastAndTestimonyMeeting == true)
     <div class="center"><text><h3>Bearing of Testimonies</h3></text></div>
     <br />
 }
-
+<br />
 <span class="program-element">
     @Html.DisplayNameFor(model => model.ClosingHymn)
 </span>
