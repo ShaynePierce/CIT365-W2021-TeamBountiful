@@ -287,12 +287,15 @@ namespace MyMeetingManager.Controllers
                 try
                 {
                     _context.Update(meeting);
-                    await _context.SaveChangesAsync();
 
                     // Remove Speakers
-                    var speaker = await _context.Speakers.FindAsync(id);
-                    _context.Speakers.Remove(speaker);
-                    await _context.SaveChangesAsync();
+                    var sp = _context.Speakers.Where(obj => obj.Meeting.Equals(meeting));
+                    foreach (Speaker element in sp)
+                    {
+                        Debug.WriteLine("Speaker ID : {0}", element.ID);
+                        _context.Speakers.Remove(element);
+                    }
+                    //await _context.SaveChangesAsync();
 
                     // Add Speakers
                     int count = Request.Form["SpeakerMember"].Count;
@@ -307,9 +310,9 @@ namespace MyMeetingManager.Controllers
                         };
                         _context.Speakers.Add(s);
                     }
+                    // End add
 
                     await _context.SaveChangesAsync();
-                    // End add
                 }
                 catch (DbUpdateConcurrencyException)
                 {
