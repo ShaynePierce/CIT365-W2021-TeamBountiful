@@ -1,4 +1,10 @@
-﻿body {
+﻿@media print {
+    header, footer {
+        display: none;
+    }
+}
+
+body {
     font-family: Garamond, Georgia, 'Times New Roman', serif;
     max-width: 720px;
     font-size: 18px;
@@ -20,7 +26,7 @@ span.program-participant {
     margin-left: auto;
 }
 
-.center, hr, sacrament {
+.center, sacrament {
     grid-column: 1/4;
     text-align: center;
 }
