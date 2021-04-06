@@ -199,6 +199,7 @@
                     <label for="RestHymnSelect" class="col-form-label col-sm-3">Rest Hymn</label>
                     <div class="col-sm-6">
                         <select name="RestHymnSelect" id="RestHymnSelect" class="form-control select2-single-tags" data-tags="true" data-placeholder="--Select a Rest Hymn--">
+                            <option value="">--Select a Rest Hymn--</option>
                             @{
                                 if (Model.SacramentHymn != null)
                                 {
@@ -216,6 +217,7 @@
                     <label for="RestHymnMemberSelect" class="col-form-label col-sm-3">Rest Hymn Performer</label>
                     <div class="col-sm-6">
                         <select name="RestHymnMemberSelect" id="RestHymnMemberSelect" class="form-control select2-single" data-placeholder="--Select a Rest Hymn Performer--">
+                            <option value="">--Select a Rest Hymn Performer--</option>
                             @{
                                 if (Model.OptionalRestHymnMember != null)
                                 {
@@ -264,8 +266,8 @@
                                 {
                                     <tr id="speackerRow-@row">
                                         <td class="name">
-                                            <input type="hidden" asp-for="@speaker.ID" name="speaker[@row][ID]" id="speakerID-@row" />
-                                            <select name="speaker[@row][Member]" id="speakerMember-@row" class="form-control select2-members" data-placeholder="--Select an Member--">
+                                            <input type="hidden" asp-for="@speaker.ID" name="SpeakerID" id="SpeakerID-@row" />
+                                            <select name="SpeakerMember" id="SpeakerMember-@row" class="form-control select2-members" data-placeholder="--Select an Member--">
                                                 @{
                                                     if (!(speaker.Member == null))
                                                     {
@@ -275,12 +277,12 @@
                                             </select>
                                         </td>
                                         <td class="topic">
-                                            <input asp-for="@speaker.Topic" name="speaker[@row][Topic]" id="speakerTopic-@row" class="form-control" />
-                                            <span asp-validation-for="@speaker.Topic" for="speakerTopic-@row" class="text-danger"></span>
+                                            <input asp-for="@speaker.Topic" name="SpeakerTopic" id="SpeakerTopic-@row" class="form-control" />
+                                            <span asp-validation-for="@speaker.Topic" for="SpeakerTopic-@row" class="text-danger"></span>
                                         </td>
                                         <td class="minutes">
-                                            <input asp-for="@speaker.Minutes" name="speaker[@row][Topic]" id="speakerMinutes-@row" class="form-control" />
-                                            <span asp-validation-for="@speaker.Minutes" for="speakerMinutes-@row" class="text-danger"></span>
+                                            <input asp-for="@speaker.Minutes" name="SpeakerMinutes" id="SpeakerMinutes-@row" class="form-control" />
+                                            <span asp-validation-for="@speaker.Minutes" for="SpeakerMinutes-@row" class="text-danger"></span>
                                         </td>
                                         <td><button type="button" onclick="removeCheck('#speackerRow-@row');" title="Remove" class="btn btn-outline-danger"><i class="bi bi-x"></i></button></td>
                                     </tr>
@@ -293,7 +295,7 @@
                 </div>
             </fieldset>
 
-            <!-- Speakers -->
+            <!-- Other -->
 
             <fieldset class="form-group border p-3">
                 <legend class="w-auto px-2">Other</legend>
@@ -314,11 +316,6 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () {
-        $(".select2-members").select2(memberSettings);
-        $(".select2-members").select2(hymnSettings);
-    });
-
     var hymnSettings = {
         dropdownAutoWidth: false,
         allowClear: true,
@@ -391,28 +388,34 @@
         }
     };
 
-    var speacker_row = @row;
+    $(document).ready(function () {
+        $(".select2-members").select2(memberSettings);
+
+        $(".select2-hymns").select2(hymnSettings);
+    });
+
+    var speaker_row = @row;
 
     function addSpeaker() {
-        html = `<tr id="speackerRow-${speacker_row}">';
+        html = `<tr id="speackerRow-${speaker_row}">';
         <td class="name">
-            <input type="hidden" id="speaker[${speacker_row}][ID]" name="speakerID-${speacker_row}" value="0">
-            <select name="speaker[${speacker_row}][Member]" id="speakerMember-${speacker_row}" class="form-control select2-members" data-placeholder="--Select an Member--"></select>
+            <input type="hidden" id="SpeakerID-${speaker_row}" name="SpeakerID-${speaker_row}" value="0">
+            <select name="SpeakerMember" id="SpeakerMember-${speaker_row}" class="form-control select2-members" data-placeholder="--Select an Member--"></select>
         </td>
         <td class="topic">
-            <input name="speaker[${speacker_row}][Topic]" id="speakerTopic-${speacker_row}" class="form-control valid" type="text">
-            <span class="text-danger field-validation-valid" data-valmsg-for="speakerTopic-${speacker_row}" data-valmsg-replace="true"></span>
+            <input name="SpeakerTopic" id="SpeakerTopic-${speaker_row}" class="form-control valid" type="text">
+            <span class="text-danger field-validation-valid" data-valmsg-for="SpeakerTopic-${speaker_row}" data-valmsg-replace="true"></span>
         </td>
         <td class="minutes">
-            <input name="speaker[${speacker_row}][Minutes]" id="speakerMinutes-${speacker_row}" class="form-control valid" type="number" data-val-range="The field Minutes must be between 3 and 15." data-val-range-max="15" data-val-range-min="3" data-val-required="The Minutes field is required.">
-            <span class="text-danger field-validation-valid" data-valmsg-for="speakerMinutes-${speacker_row}" data-valmsg-replace="true"></span>
+            <input name="SpeakerMinutes" id="SpeakerMinutes-${speaker_row}" class="form-control valid" type="number" data-val-range="The field Minutes must be between 3 and 15." data-val-range-max="15" data-val-range-min="3" data-val-required="The Minutes field is required.">
+            <span class="text-danger field-validation-valid" data-valmsg-for="SpeakerMinutes-${speaker_row}" data-valmsg-replace="true"></span>
         </td>
-        <td><button type="button" onclick="removeCheck('#speackerRow-${speacker_row}');" title="Remove" class="btn btn-outline-danger"><i class="bi bi-x"></i></button></td>
+        <td><button type="button" onclick="removeCheck('#speackerRow-${speaker_row}');" title="Remove" class="btn btn-outline-danger"><i class="bi bi-x"></i></button></td>
         </tr>`;
 
         $('#speakers-table').append(html);
         $(".select2-members").select2(memberSettings);
-        speacker_row++;
+        speaker_row++;
     }
 
     function removeCheck(result) {
