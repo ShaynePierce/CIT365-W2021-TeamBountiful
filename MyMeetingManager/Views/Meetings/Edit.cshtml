@@ -201,9 +201,9 @@
                         <select name="RestHymnSelect" id="RestHymnSelect" class="form-control select2-single-tags" data-tags="true" data-placeholder="--Select a Rest Hymn--">
                             <option value="">--Select a Rest Hymn--</option>
                             @{
-                                if (Model.SacramentHymn != null)
+                                if (Model.OptionalRestHymnTitle != null)
                                 {
-                                    @:<option selected="selected" value="-1">@Model.OptionalRestHymnTitle</option>
+                                    @:<option selected="selected" value="@Model.OptionalRestHymnTitle">@Model.OptionalRestHymnTitle</option>
                                 }
                                 foreach (Hymn h in ViewBag.HymnList)
                                 {
