@@ -69,7 +69,19 @@
             });
             $('.select2-single-tags').select2({
                 theme: 'bootstrap4',
-                tags: true
+                tags: true,
+                createTag: function (params) {
+                    var term = $.trim(params.term);
+
+                    if (term === '') {
+                        return null;
+                    }
+
+                    return {
+                        id: term,
+                        text: term,
+                    }
+                }
             });
         });
     </script> 

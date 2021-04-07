@@ -43,11 +43,11 @@
         <dd class="col-sm-10">
             @if (Model.Presiding != null)
             {
-                @Html.DisplayFor(model => model.Presiding.Salutation) @Html.DisplayFor(model => model.Presiding.Name)
+                <text>@Html.DisplayFor(model => model.Presiding.Salutation) @Html.DisplayFor(model => model.Presiding.Name)</text>
             }
             else
             {
-                <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign a Presiding Leader</a></text>
+            <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign a Presiding Leader</a></text>
             }
         </dd>
         <dt class="col-sm-2">
@@ -56,11 +56,11 @@
         <dd class="col-sm-10">
             @if (Model.ConductingLeader != null)
             {
-                @Html.DisplayFor(model => model.ConductingLeader.Salutation) @Html.DisplayFor(model => model.ConductingLeader.Name)
+                <text>@Html.DisplayFor(model => model.ConductingLeader.Salutation) @Html.DisplayFor(model => model.ConductingLeader.Name)</text>
             }
             else
             {
-                <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign Conducting Leader</a></text>
+            <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign Conducting Leader</a></text>
             }
         </dd>
         <dt class="col-sm-2">
@@ -69,11 +69,11 @@
         <dd class="col-sm-10">
             @if (Model.Chorister != null)
             {
-                @Html.DisplayFor(model => model.Chorister.Salutation) @Html.DisplayFor(model => model.Chorister.Name)
+                <text>@Html.DisplayFor(model => model.Chorister.Salutation) @Html.DisplayFor(model => model.Chorister.Name)</text>
             }
             else
             {
-                <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign a Chorister</a></text>
+            <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign a Chorister</a></text>
             }
         </dd>
         <dt class="col-sm-2">
@@ -82,11 +82,11 @@
         <dd class="col-sm-10">
             @if (Model.Organist != null)
             {
-                @Html.DisplayFor(model => model.Organist.Salutation) @Html.DisplayFor(model => model.Organist.Name)
+                <text>@Html.DisplayFor(model => model.Organist.Salutation) @Html.DisplayFor(model => model.Organist.Name)</text>
             }
             else
             {
-                <text><a href="../Edit">Assign an Organist</a></text>
+            <text><a href="../Edit">Assign an Organist</a></text>
             }
         </dd>
         <dt class="col-sm-2">
@@ -109,7 +109,7 @@
         <dd class="col-sm-10">
             @if (Model.OpeningPrayerMember != null)
             {
-                @Html.DisplayFor(model => model.OpeningPrayerMember.Salutation) @Html.DisplayFor(model => model.OpeningPrayerMember.Name)
+                <text>@Html.DisplayFor(model => model.OpeningPrayerMember.Salutation) @Html.DisplayFor(model => model.OpeningPrayerMember.Name)</text>
             }
             else
             {
@@ -139,7 +139,7 @@
                 <text><a asp-action="Edit" asp-route-id="@Model.ID">Assign Sacrament Hymn</a></text>
             }
         </dd>
-        @if (Model.OptionalRestHymnTitle != null)
+        @if (!String.IsNullOrEmpty(Model.OptionalRestHymnTitle))
         {
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.OptionalRestHymnTitle)

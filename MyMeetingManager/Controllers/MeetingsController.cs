@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyMeetingManager.Data;
 using MyMeetingManager.Models;
+using System.Diagnostics;
 
 namespace MyMeetingManager.Controllers
 {
@@ -156,6 +157,23 @@ namespace MyMeetingManager.Controllers
             {
                 _context.Add(meeting);
                 await _context.SaveChangesAsync();
+
+                // Add Speakers
+                int count = Request.Form["SpeakerMember"].Count;
+                for (int i = 0; i < count; i++)
+                {
+                    Speaker s = new Speaker
+                    {
+                        Meeting = meeting,
+                        Member = _context.Members.Find(int.Parse(Request.Form["SpeakerMember"][i])),
+                        Topic = Request.Form["SpeakerTopic"][i],
+                        Minutes = int.Parse(Request.Form["SpeakerMinutes"][i]),
+                    };
+                    _context.Speakers.Add(s);
+                }
+                await _context.SaveChangesAsync();
+                // End add
+
                 return RedirectToAction(nameof(Index));
             }
             return View(meeting);
@@ -202,7 +220,6 @@ namespace MyMeetingManager.Controllers
             }
             return hymn;
         }
-
 
         // GET: Meetings/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -264,22 +281,38 @@ namespace MyMeetingManager.Controllers
             meeting.ClosingHymn = GetSelectedHymn("ClosingHymnSelect");
             meeting.ClosingPrayerMember = GetSelectedMember("ClosingPrayerSelect");
 
+
             if (ModelState.IsValid)
             {
                 try
                 {
                     _context.Update(meeting);
+
+                    // Remove Speakers
+                    var sp = _context.Speakers.Where(obj => obj.Meeting.Equals(meeting));
+                    foreach (Speaker element in sp)
+                    {
+                        Debug.WriteLine("Speaker ID : {0}", element.ID);
+                        _context.Speakers.Remove(element);
+                    }
+                    //await _context.SaveChangesAsync();
+
+                    // Add Speakers
+                    int count = Request.Form["SpeakerMember"].Count;
+                    for (int i = 0; i < count; i++)
+                    {
+                        Speaker s = new Speaker
+                        {
+                            Meeting = meeting,
+                            Member = _context.Members.Find(int.Parse(Request.Form["SpeakerMember"][i])),
+                            Topic = Request.Form["SpeakerTopic"][i],
+                            Minutes = int.Parse(Request.Form["SpeakerMinutes"][i]),
+                        };
+                        _context.Speakers.Add(s);
+                    }
+                    // End add
+
                     await _context.SaveChangesAsync();
-
-                    //Remove or update Speakers
-                    //Add Speakers
-                    //foreach
-                        //Speakers
-                        //speaker.ID;
-                        //speaker.Member
-                        //speaker.Topic;
-                        //speaker.Minutes
-
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -368,10 +401,6 @@ namespace MyMeetingManager.Controllers
                 .Include(h => h.ClosingHymn)
                 .Include(m => m.ClosingPrayerMember)
                 .ToListAsync();
-
-
-
-
         }*/
     }
 }
